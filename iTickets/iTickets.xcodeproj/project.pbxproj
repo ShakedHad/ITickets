@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54C60E49B165AE201B41F57C /* Pods_iTickets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5B270667DD2E609521B878 /* Pods_iTickets.framework */; };
 		847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639DE240C26AB0002D254 /* AppDelegate.swift */; };
 		847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639E0240C26AB0002D254 /* SceneDelegate.swift */; };
 		847639E3240C26AB0002D254 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639E2240C26AB0002D254 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A5B270667DD2E609521B878 /* Pods_iTickets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iTickets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		847639DB240C26AB0002D254 /* iTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847639DE240C26AB0002D254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847639E0240C26AB0002D254 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		847639E7240C26B20002D254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847639EA240C26B20002D254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		847639EC240C26B20002D254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90BDD08BCB18E13715AE3DE4 /* Pods-iTickets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTickets.release.xcconfig"; path = "Target Support Files/Pods-iTickets/Pods-iTickets.release.xcconfig"; sourceTree = "<group>"; };
+		C97EF056CCDD303F1A7050CA /* Pods-iTickets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTickets.debug.xcconfig"; path = "Target Support Files/Pods-iTickets/Pods-iTickets.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54C60E49B165AE201B41F57C /* Pods_iTickets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		084B3494346F3BCE3D7D80EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A5B270667DD2E609521B878 /* Pods_iTickets.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1F2A701810339F444E32083D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C97EF056CCDD303F1A7050CA /* Pods-iTickets.debug.xcconfig */,
+				90BDD08BCB18E13715AE3DE4 /* Pods-iTickets.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		847639D2240C26AB0002D254 = {
 			isa = PBXGroup;
 			children = (
 				847639DD240C26AB0002D254 /* iTickets */,
 				847639DC240C26AB0002D254 /* Products */,
+				1F2A701810339F444E32083D /* Pods */,
+				084B3494346F3BCE3D7D80EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +80,9 @@
 		847639DD240C26AB0002D254 /* iTickets */ = {
 			isa = PBXGroup;
 			children = (
+				847639F5240C2B870002D254 /* Stores */,
+				847639F4240C2B800002D254 /* Models */,
+				847639F2240C2B590002D254 /* VIewControlles */,
 				847639DE240C26AB0002D254 /* AppDelegate.swift */,
 				847639E0240C26AB0002D254 /* SceneDelegate.swift */,
 				847639E2240C26AB0002D254 /* ViewController.swift */,
@@ -67,6 +94,27 @@
 			path = iTickets;
 			sourceTree = "<group>";
 		};
+		847639F2240C2B590002D254 /* VIewControlles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VIewControlles;
+			sourceTree = "<group>";
+		};
+		847639F4240C2B800002D254 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		847639F5240C2B870002D254 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +122,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 847639EF240C26B20002D254 /* Build configuration list for PBXNativeTarget "iTickets" */;
 			buildPhases = (
+				50FFC3826B076DF194662FEA /* [CP] Check Pods Manifest.lock */,
 				847639D7240C26AB0002D254 /* Sources */,
 				847639D8240C26AB0002D254 /* Frameworks */,
 				847639D9240C26AB0002D254 /* Resources */,
+				6DD09F2C4DA3FD52357A6304 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +182,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50FFC3826B076DF194662FEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iTickets-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DD09F2C4DA3FD52357A6304 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTickets/Pods-iTickets-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iTickets/Pods-iTickets-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTickets/Pods-iTickets-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		847639D7240C26AB0002D254 /* Sources */ = {
@@ -282,6 +374,7 @@
 		};
 		847639F0240C26B20002D254 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C97EF056CCDD303F1A7050CA /* Pods-iTickets.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +392,7 @@
 		};
 		847639F1240C26B20002D254 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90BDD08BCB18E13715AE3DE4 /* Pods-iTickets.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
