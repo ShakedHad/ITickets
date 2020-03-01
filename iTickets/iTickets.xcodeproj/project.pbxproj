@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843FE975240C548800D3C23D /* TicketsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FE974240C548800D3C23D /* TicketsTableViewController.swift */; };
 		84425309240C3C8900521137 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84425308240C3C8900521137 /* LoginViewController.swift */; };
 		8442530B240C3C9B00521137 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442530A240C3C9B00521137 /* RegisterViewController.swift */; };
-		8442530D240C426000521137 /* TIcketsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442530C240C426000521137 /* TIcketsTableViewController.swift */; };
 		847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639DE240C26AB0002D254 /* AppDelegate.swift */; };
 		847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639E0240C26AB0002D254 /* SceneDelegate.swift */; };
 		847639E6240C26AB0002D254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847639E4240C26AB0002D254 /* Main.storyboard */; };
@@ -19,9 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		843FE974240C548800D3C23D /* TicketsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsTableViewController.swift; sourceTree = "<group>"; };
 		84425308240C3C8900521137 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8442530A240C3C9B00521137 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		8442530C240C426000521137 /* TIcketsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIcketsTableViewController.swift; sourceTree = "<group>"; };
 		847639DB240C26AB0002D254 /* iTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847639DE240C26AB0002D254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847639E0240C26AB0002D254 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			children = (
 				84425308240C3C8900521137 /* LoginViewController.swift */,
 				8442530A240C3C9B00521137 /* RegisterViewController.swift */,
-				8442530C240C426000521137 /* TIcketsTableViewController.swift */,
+				843FE974240C548800D3C23D /* TicketsTableViewController.swift */,
 			);
 			path = VIewControlles;
 			sourceTree = "<group>";
@@ -132,7 +132,6 @@
 				847639D7240C26AB0002D254 /* Sources */,
 				847639D8240C26AB0002D254 /* Frameworks */,
 				847639D9240C26AB0002D254 /* Resources */,
-				2B009A3268EC3253112E98C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,23 +189,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B009A3268EC3253112E98C6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iTickets/Pods-iTickets-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-iTickets/Pods-iTickets-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iTickets/Pods-iTickets-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		50FFC3826B076DF194662FEA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,10 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8442530D240C426000521137 /* TIcketsTableViewController.swift in Sources */,
 				84425309240C3C8900521137 /* LoginViewController.swift in Sources */,
 				8442530B240C3C9B00521137 /* RegisterViewController.swift in Sources */,
 				847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */,
+				843FE975240C548800D3C23D /* TicketsTableViewController.swift in Sources */,
 				847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -31,10 +31,6 @@ class TicketsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 5
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ("iTickets")
-    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
