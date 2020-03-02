@@ -15,6 +15,11 @@
 		847639E6240C26AB0002D254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847639E4240C26AB0002D254 /* Main.storyboard */; };
 		847639E8240C26B20002D254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847639E7240C26B20002D254 /* Assets.xcassets */; };
 		847639EB240C26B20002D254 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847639E9240C26B20002D254 /* LaunchScreen.storyboard */; };
+		848CF54A240D732F0082EEA2 /* TicketsCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF549240D732F0082EEA2 /* TicketsCellViewController.swift */; };
+		848CF54C240D74100082EEA2 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF54B240D74100082EEA2 /* Ticket.swift */; };
+		848CF54E240D74B80082EEA2 /* TIcketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF54D240D74B80082EEA2 /* TIcketsStore.swift */; };
+		848CF550240D79140082EEA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF54F240D79140082EEA2 /* User.swift */; };
+		848CF554240D93A80082EEA2 /* TicketInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF553240D93A80082EEA2 /* TicketInfoViewController.swift */; };
 		EE9731F2FFD6D1F6B1BD0901 /* libPods-iTickets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F21B504B30D9D55A2A039283 /* libPods-iTickets.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +34,11 @@
 		847639E7240C26B20002D254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847639EA240C26B20002D254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		847639EC240C26B20002D254 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		848CF549240D732F0082EEA2 /* TicketsCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsCellViewController.swift; sourceTree = "<group>"; };
+		848CF54B240D74100082EEA2 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		848CF54D240D74B80082EEA2 /* TIcketsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIcketsStore.swift; sourceTree = "<group>"; };
+		848CF54F240D79140082EEA2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		848CF553240D93A80082EEA2 /* TicketInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoViewController.swift; sourceTree = "<group>"; };
 		90BDD08BCB18E13715AE3DE4 /* Pods-iTickets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTickets.release.xcconfig"; path = "Target Support Files/Pods-iTickets/Pods-iTickets.release.xcconfig"; sourceTree = "<group>"; };
 		C97EF056CCDD303F1A7050CA /* Pods-iTickets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTickets.debug.xcconfig"; path = "Target Support Files/Pods-iTickets/Pods-iTickets.debug.xcconfig"; sourceTree = "<group>"; };
 		F21B504B30D9D55A2A039283 /* libPods-iTickets.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iTickets.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +113,8 @@
 				84425308240C3C8900521137 /* LoginViewController.swift */,
 				8442530A240C3C9B00521137 /* RegisterViewController.swift */,
 				843FE974240C548800D3C23D /* TicketsTableViewController.swift */,
+				848CF549240D732F0082EEA2 /* TicketsCellViewController.swift */,
+				848CF553240D93A80082EEA2 /* TicketInfoViewController.swift */,
 			);
 			path = VIewControlles;
 			sourceTree = "<group>";
@@ -110,6 +122,8 @@
 		847639F4240C2B800002D254 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				848CF54B240D74100082EEA2 /* Ticket.swift */,
+				848CF54F240D79140082EEA2 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +131,7 @@
 		847639F5240C2B870002D254 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				848CF54D240D74B80082EEA2 /* TIcketsStore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -219,9 +234,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84425309240C3C8900521137 /* LoginViewController.swift in Sources */,
+				848CF54E240D74B80082EEA2 /* TIcketsStore.swift in Sources */,
 				8442530B240C3C9B00521137 /* RegisterViewController.swift in Sources */,
 				847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */,
 				843FE975240C548800D3C23D /* TicketsTableViewController.swift in Sources */,
+				848CF550240D79140082EEA2 /* User.swift in Sources */,
+				848CF554240D93A80082EEA2 /* TicketInfoViewController.swift in Sources */,
+				848CF54A240D732F0082EEA2 /* TicketsCellViewController.swift in Sources */,
+				848CF54C240D74100082EEA2 /* Ticket.swift in Sources */,
 				847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
