@@ -9,14 +9,15 @@
 import UIKit
 
 class TicketsTableViewController: UITableViewController {
-    
-    var data = [Ticket]();
-    var selectedTicket:Ticket?;
 
     override func viewDidLoad() {
-        super.viewDidLoad();
-        
-        data = TicketsStore.instance.getAll();
+        super.viewDidLoad()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -28,42 +29,17 @@ class TicketsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ("iTickets");
+        return 5
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:TicketsCellViewController = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketsCellViewController
-        
-        let currentTicket:Ticket = data[indexPath.row];
-        cell.artistLabel.text = currentTicket.artist;
-        cell.locationLabel.text = currentTicket.location;
-        
-        let formatter = DateFormatter();
-        formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-        cell.dateLabel.text = formatter.string(from: currentTicket.time);
-        cell.priceLabel.text = String(currentTicket.price)+"₪";
-//        cell.postImageImageVIew.image = currentTicket.image;
-        cell.postImageImageVIew.image = UIImage(named: "emptyArtist");
-      
-        return cell;
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedTicket = data[indexPath.row];
-        performSegue(withIdentifier: "ticketInfoSegue", sender: self);
-    }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath)
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ticketInfoSegue" {
-            (segue.destination as! TicketInfoViewController).ticket = selectedTicket;
-        }
+        // Configure the cell...
+
+        return cell
     }
-    
     
 
     /*
@@ -101,6 +77,14 @@ class TicketsTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
