@@ -24,6 +24,8 @@ class FirebaseAccessor: AsyncStoreProtocol {
                     var data = QueryDocumentSnapshot.data()
                     data["time"] = (data["time"] as! Timestamp).dateValue();
                     
+                    data["id"] = QueryDocumentSnapshot.documentID;
+                    
                     let decoder = FirestoreDecoder();
                     let ticket = try! decoder.decode(Ticket.self, from: data)
                     return ticket;

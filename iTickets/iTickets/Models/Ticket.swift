@@ -14,6 +14,7 @@ import Firebase
 extension Timestamp: TimestampType {};
 
 class Ticket : Encodable, Decodable {
+    var id:String;
     var artist:String;
     var price:Int;
     var time:Date;
@@ -22,7 +23,8 @@ class Ticket : Encodable, Decodable {
     var seller:User;
 
     
-    init(artist:String, price:Int, time:Date, location:String, image:String, seller:User) {
+    init(id:String,artist:String, price:Int, time:Date, location:String, image:String, seller:User) {
+        self.id = id;
         self.artist = artist;
         self.price = price;
         self.time = time;
