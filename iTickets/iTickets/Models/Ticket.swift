@@ -16,13 +16,13 @@ extension Timestamp: TimestampType {};
 class Ticket : Encodable, Decodable {
     var artist:String;
     var price:Int;
-    var time:Timestamp;
+    var time:Date;
     var location:String;
     var image:String;
     var seller:User;
 
     
-    init(artist:String, price:Int, time:Timestamp, location:String, image:String, seller:User) {
+    init(artist:String, price:Int, time:Date, location:String, image:String, seller:User) {
         self.artist = artist;
         self.price = price;
         self.time = time;

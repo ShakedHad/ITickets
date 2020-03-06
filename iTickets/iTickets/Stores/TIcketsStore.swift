@@ -18,7 +18,7 @@ class TicketsStore : AsyncStoreProtocol {
     
     private init() {
         for _ in 0...10 {
-            add(element: Ticket(artist: "Ravid Plotnik", price: 250, time: Timestamp(date: Date()), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
+            add(element: Ticket(artist: "Ravid Plotnik", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
         }
         
         print("bla");
@@ -27,7 +27,6 @@ class TicketsStore : AsyncStoreProtocol {
     
     func getAll(callback: @escaping ([Ticket])->Void){
         remoteDBAccessor.getAll(callback: callback);
-//        return data;
     }
     
     func add(element:Ticket) {

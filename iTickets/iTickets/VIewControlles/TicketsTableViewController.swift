@@ -51,7 +51,7 @@ class TicketsTableViewController: UITableViewController {
         
         let formatter = DateFormatter();
         formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-        cell.dateLabel.text = formatter.string(from: currentTicket.time.dateValue());
+        cell.dateLabel.text = formatter.string(from: currentTicket.time);
         cell.priceLabel.text = String(currentTicket.price)+"₪";
 //        cell.postImageImageVIew.image = currentTicket.image;
         cell.postImageImageVIew.image = UIImage(named: "emptyArtist");
