@@ -14,7 +14,6 @@ class FirebaseAccessor: AsyncStoreProtocol {
     
     var db = Firestore.firestore();
     
-    
     func getAll(callback: @escaping (([Ticket])->Void)) {
         //        db.collection("tickets").whereField("updateTime", isGreaterThan: Timestamp(seconds: since, nanoseconds: 0)).getDocuments() { (querySnapshot, err) in
         db.collection("tickets").getDocuments() { (querySnapshot, err) in
@@ -37,11 +36,8 @@ class FirebaseAccessor: AsyncStoreProtocol {
     
     func add(element: Ticket) {
         var ref: DocumentReference? = nil
-        
-        var ticket = Ticket(artist: "Tuna", price: 250, time: Date(), location: "Park Hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200"));
-        
 
-        let ticketJson = try! FirestoreEncoder().encode(ticket)
+        let ticketJson = try! FirestoreEncoder().encode(element)
         
         ref = db.collection("tickets").addDocument(data: ticketJson) { err in
             if let err = err {

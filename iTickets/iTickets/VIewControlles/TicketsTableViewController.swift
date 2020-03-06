@@ -21,8 +21,6 @@ class TicketsTableViewController: UITableViewController {
             self.refreshControl?.endRefreshing();
             self.tableView.reloadData();
         };
-        
-        
     }
 
     // MARK: - Table view data source

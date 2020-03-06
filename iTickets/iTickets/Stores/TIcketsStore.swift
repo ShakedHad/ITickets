@@ -17,12 +17,11 @@ class TicketsStore : AsyncStoreProtocol {
     var data:[Ticket] = [Ticket]();
     
     private init() {
-        for _ in 0...10 {
-            add(element: Ticket(artist: "Ravid Plotnik", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
-        }
-        
-        print("bla");
-        
+//        for _ in 0...10 {
+//            add(element: Ticket(artist: "Ravid Plotnik", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
+//        }
+//        
+//        print("bla");
     }
     
     func getAll(callback: @escaping ([Ticket])->Void){
@@ -30,7 +29,6 @@ class TicketsStore : AsyncStoreProtocol {
     }
     
     func add(element:Ticket) {
-//        data.append(element);
-//        remoteDBAccessor.add(element: element);
+        remoteDBAccessor.add(element: element);
     }
 }
