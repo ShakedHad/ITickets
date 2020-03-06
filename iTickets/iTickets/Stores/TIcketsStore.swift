@@ -8,24 +8,27 @@
     
 import Foundation
 import UIKit
+import Firebase
 
-class TicketsStore {
-    
+class TicketsStore : AsyncStoreProtocol {
+        
     static let instance:TicketsStore = TicketsStore();
+    var remoteDBAccessor:FirebaseAccessor = FirebaseAccessor();
     var data:[Ticket] = [Ticket]();
     
     private init() {
-        for _ in 0...10 {
-            add();
-        }
-        
+//        for _ in 0...10 {
+//            add(element: Ticket(artist: "Ravid Plotnik", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
+//        }
+//        
+//        print("bla");
     }
     
-    func getAll()->[Ticket] {
-        return data;
+    func getAll(callback: @escaping ([Ticket])->Void){
+        remoteDBAccessor.getAll(callback: callback);
     }
     
-    func add() {
-        data.append(Ticket(artist: "Ravid Plotnik", price: 250, time: Date(), location: "Park hayarkon", image: UIImage(), seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
+    func add(element:Ticket) {
+        remoteDBAccessor.add(element: element);
     }
 }

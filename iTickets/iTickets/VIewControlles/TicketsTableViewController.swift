@@ -16,7 +16,11 @@ class TicketsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        data = TicketsStore.instance.getAll();
+        TicketsStore.instance.getAll{(tickets:[Ticket]) in
+            self.data = tickets
+            self.refreshControl?.endRefreshing();
+            self.tableView.reloadData();
+        };
     }
 
     // MARK: - Table view data source

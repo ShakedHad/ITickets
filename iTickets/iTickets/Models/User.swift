@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class User : Encodable, Decodable {
     var name:String;
     var phone:String;
     var id:String;
