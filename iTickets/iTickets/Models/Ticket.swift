@@ -8,16 +8,21 @@
 
 import Foundation
 import UIKit
+import CodableFirebase
+import Firebase
 
-class Ticket {
+extension Timestamp: TimestampType {};
+
+class Ticket : Encodable, Decodable {
     var artist:String;
     var price:Int;
-    var time:Date;
+    var time:Timestamp;
     var location:String;
-    var image:UIImage;
+    var image:String;
     var seller:User;
+
     
-    init(artist:String, price:Int, time:Date, location:String, image:UIImage, seller:User) {
+    init(artist:String, price:Int, time:Timestamp, location:String, image:String, seller:User) {
         self.artist = artist;
         self.price = price;
         self.time = time;

@@ -16,7 +16,13 @@ class TicketsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
-//        data = TicketsStore.instance.getAll();
+        TicketsStore.instance.getAll{(tickets:[Ticket]) in
+            self.data = tickets
+            self.refreshControl?.endRefreshing();
+            self.tableView.reloadData();
+        };
+        
+        
     }
 
     // MARK: - Table view data source
@@ -45,7 +51,7 @@ class TicketsTableViewController: UITableViewController {
         
         let formatter = DateFormatter();
         formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-        cell.dateLabel.text = formatter.string(from: currentTicket.time);
+        cell.dateLabel.text = formatter.string(from: currentTicket.time.dateValue());
         cell.priceLabel.text = String(currentTicket.price)+"₪";
 //        cell.postImageImageVIew.image = currentTicket.image;
         cell.postImageImageVIew.image = UIImage(named: "emptyArtist");

@@ -28,7 +28,7 @@ class TicketInfoViewController: UIViewController {
         
         let formatter = DateFormatter();
         formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-        self.timeLabel.text = formatter.string(from: ticket!.time);
+        self.timeLabel.text = formatter.string(from: ticket!.time.dateValue());
         self.sellerNameLabel.text = ticket!.seller.name;
         self.sellerPhoneLabel.text = ticket!.seller.phone;
         self.priceLabel.text = String(ticket!.price)+"₪";
