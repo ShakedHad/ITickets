@@ -15,7 +15,6 @@ class FirebaseAccessor: AsyncStoreProtocol {
     var db = Firestore.firestore();
     
     func getAll(callback: @escaping (([Ticket])->Void)) {
-        //        db.collection("tickets").whereField("updateTime", isGreaterThan: Timestamp(seconds: since, nanoseconds: 0)).getDocuments() { (querySnapshot, err) in
         db.collection("tickets").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -23,9 +22,31 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 let tickets = querySnapshot!.documents.map { (QueryDocumentSnapshot) -> Ticket in
                     var data = QueryDocumentSnapshot.data()
                     data["time"] = (data["time"] as! Timestamp).dateValue();
-                    
+                    data["updateTime"] = (data["updateTime"] as! Timestamp).dateValue();
+
                     data["id"] = QueryDocumentSnapshot.documentID;
-                    
+
+                    let decoder = FirestoreDecoder();
+                    let ticket = try! decoder.decode(Ticket.self, from: data)
+                    return ticket;
+                }
+                callback(tickets);
+            }
+        }
+    }
+    
+    func getAll(since:Date, callback: @escaping (([Ticket])->Void)) {
+        db.collection("tickets").whereField("updateTime", isGreaterThan: Timestamp(date: since)).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let tickets = querySnapshot!.documents.map { (QueryDocumentSnapshot) -> Ticket in
+                    var data = QueryDocumentSnapshot.data()
+                    data["time"] = (data["time"] as! Timestamp).dateValue();
+                    data["updateTime"] = (data["updateTime"] as! Timestamp).dateValue();
+
+                    data["id"] = QueryDocumentSnapshot.documentID;
+
                     let decoder = FirestoreDecoder();
                     let ticket = try! decoder.decode(Ticket.self, from: data)
                     return ticket;
@@ -38,8 +59,9 @@ class FirebaseAccessor: AsyncStoreProtocol {
     
     func add(element: Ticket) {
         var ref: DocumentReference? = nil
-
-        let ticketJson = try! FirestoreEncoder().encode(element)
+        var ticketJson = try! FirestoreEncoder().encode(element)
+        
+        ticketJson["updateTime"] = FieldValue.serverTimestamp();
         
         ref = db.collection("tickets").addDocument(data: ticketJson) { err in
             if let err = err {
@@ -48,6 +70,16 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 print("Document added with ID: \(ref!.documentID)")
             }
         }
-        
+    }
+    
+    func getServerLastUpdatedDate(callback: @escaping (Date)->Void) {
+        db.collection("tickets").order(by: "updateTime", descending: true).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
+                callback((lastUpdatedTicket["updateTime"] as! Timestamp).dateValue());
+            }
+        };
     }
 }

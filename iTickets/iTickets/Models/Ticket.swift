@@ -21,6 +21,7 @@ class Ticket : Encodable, Decodable {
     var location:String;
     var image:String;
     var seller:User;
+    var updateTime:Date = Date();
 
     
     init(id:String,artist:String, price:Int, time:Date, location:String, image:String, seller:User) {

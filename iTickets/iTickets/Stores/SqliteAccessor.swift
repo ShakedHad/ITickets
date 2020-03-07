@@ -26,6 +26,10 @@ class SqliteAccesoor: SyncStoreProtocol {
     let image = Expression<String>("image")
     let sellerID = Expression<String>("sellerID")
     
+    let lastUpdatedDateTable = Table("lastUpdatedDate");
+    let tableNameColumn = Expression<String>("tableName");
+    let lastUpdatedDateColumn = Expression<Date>("lastUpdatedDate");
+    
     init() {
         do {
             let dbFileName = "iTickets.db";
@@ -49,7 +53,7 @@ class SqliteAccesoor: SyncStoreProtocol {
                 t.column(userId, primaryKey: true)
                 t.column(name)
                 t.column(phone)
-            })
+            });
             
             try db?.run(ticketsTable.create(ifNotExists: true) { t in
                 t.column(ticketId, primaryKey: true)
@@ -60,7 +64,12 @@ class SqliteAccesoor: SyncStoreProtocol {
                 t.column(image)
                 t.column(sellerID)
                 t.foreignKey(sellerID, references: usersTable, userId, delete: .setNull)
-            })
+            });
+            
+            try db?.run(lastUpdatedDateTable.create(ifNotExists: true) { t in
+                t.column(tableNameColumn, primaryKey: true)
+                t.column(lastUpdatedDateColumn)
+            });
             
         } catch let err {
             print("Error while creating tables: \(err)")
@@ -98,6 +107,27 @@ class SqliteAccesoor: SyncStoreProtocol {
                                        sellerID <- element.seller.id));
         } catch let err {
             print("Error while adding ticket: \(err)")
+        }
+    }
+    
+    func getLastUpdatedDate(tableName:String)->Date {
+        do {
+            let date = (try (db?.prepare(lastUpdatedDateTable.filter(tableNameColumn == tableName)))!).first(where: {row in true});
+            
+            return date![lastUpdatedDateColumn];
+        } catch let err {
+            print("Error while getting tickets: \(err)")
+            return Date();
+        }
+    }
+    
+    func setLastUpdatedDate(tableName:String, lastUpdatedDate: Date) {
+        do {
+            try db?.run(lastUpdatedDateTable.insert(or: .replace,
+                                                    tableNameColumn <- tableName,
+                                                    lastUpdatedDateColumn <- lastUpdatedDate));
+        } catch let err {
+            print("Error while setting updated date ticket: \(err)")
         }
     }
 }
