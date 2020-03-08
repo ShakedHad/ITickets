@@ -15,7 +15,6 @@ class TicketsStore : AsyncStoreProtocol {
     static let instance:TicketsStore = TicketsStore();
     var remoteDBAccessor:FirebaseAccessor = FirebaseAccessor();
     var localDBAccessor:SqliteAccesoor = SqliteAccesoor();
-    var data:[Ticket] = [Ticket]();
     
     private init() {
 //        for _ in 0...10 {
@@ -35,14 +34,13 @@ class TicketsStore : AsyncStoreProtocol {
             for ticket in newTickets {
                 self.localDBAccessor.add(element: ticket);
             }
-            
+
             self.remoteDBAccessor.getServerLastUpdatedDate() { serverLastUpdatedDate in
                 self.localDBAccessor.setLastUpdatedDate(tableName: "tickets", lastUpdatedDate: serverLastUpdatedDate);
                 let allTickets = self.localDBAccessor.getAll();
-                
+
                 callback(allTickets)
             };
-            
         };
     }
     
