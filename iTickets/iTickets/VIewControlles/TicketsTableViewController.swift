@@ -16,17 +16,18 @@ class TicketsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        self.refreshControl = UIRefreshControl();
+        
         TicketsStore.instance.getAll{(tickets:[Ticket]) in
             self.data = tickets
-            self.refreshControl?.endRefreshing();
             self.tableView.reloadData();
+            self.refreshControl?.endRefreshing();
         };
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 

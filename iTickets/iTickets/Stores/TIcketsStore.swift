@@ -14,18 +14,34 @@ class TicketsStore : AsyncStoreProtocol {
         
     static let instance:TicketsStore = TicketsStore();
     var remoteDBAccessor:FirebaseAccessor = FirebaseAccessor();
-    var data:[Ticket] = [Ticket]();
+    var localDBAccessor:SqliteAccesoor = SqliteAccesoor();
     
     private init() {
 //        for _ in 0...10 {
-//            add(element: Ticket(artist: "Ravid Plotnik", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
+//        remoteDBAccessor.add(element: Ticket(id:"123",artist: "Ravid Plotnik2", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
 //        }
-//        
+////
 //        print("bla");
+//        var bla = localDBAccessor.getAll();
+//        localDBAccessor.setLastUpdatedDate(tableName: "tickets", lastUpdatedDate: Date());
+//        var date = localDBAccessor.getLastUpdatedDate(tableName: "tickets");
+//        print (date);
     }
     
     func getAll(callback: @escaping ([Ticket])->Void){
-        remoteDBAccessor.getAll(callback: callback);
+        let cacheLastUpdatedDate = localDBAccessor.getLastUpdatedDate(tableName: "tickets");
+        remoteDBAccessor.getAll(since: cacheLastUpdatedDate) { newTickets in
+            for ticket in newTickets {
+                self.localDBAccessor.add(element: ticket);
+            }
+
+            self.remoteDBAccessor.getServerLastUpdatedDate() { serverLastUpdatedDate in
+                self.localDBAccessor.setLastUpdatedDate(tableName: "tickets", lastUpdatedDate: serverLastUpdatedDate);
+                let allTickets = self.localDBAccessor.getAll();
+
+                callback(allTickets)
+            };
+        };
     }
     
     func add(element:Ticket) {
