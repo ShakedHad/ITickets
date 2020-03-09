@@ -79,8 +79,13 @@ class SqliteAccesoor: SyncStoreProtocol {
     func getAll() -> [Ticket] {
         do {
             let tickets = (try (db?.prepare(ticketsTable.join(usersTable, on: userId == sellerID)))!).map { (ticketRow) -> Ticket in
-                return Ticket(id: ticketRow[ticketId], artist: ticketRow[artist], price: ticketRow[price], time: ticketRow[time], location: ticketRow[location], image: ticketRow[image], seller: User(name: ticketRow[name], phone: ticketRow[phone], id: ticketRow[userId]));
 
+                return Ticket(artist: ticketRow[artist],
+                      price: ticketRow[price],
+                      time: ticketRow[time],
+                  location: ticketRow[location],
+                  image: ticketRow[image],
+                  seller: User(name: ticketRow[name], phone: ticketRow[phone], id: ticketRow[userId]))
             }
             
             return tickets;
@@ -114,7 +119,7 @@ class SqliteAccesoor: SyncStoreProtocol {
         do {
             let date = (try (db?.prepare(lastUpdatedDateTable.filter(tableNameColumn == tableName)))!).first(where: {row in true});
             
-            return date![lastUpdatedDateColumn];
+            return date?[lastUpdatedDateColumn] ?? Date(timeIntervalSince1970: 0);
         } catch let err {
             print("Error while getting tickets: \(err)")
             return Date();

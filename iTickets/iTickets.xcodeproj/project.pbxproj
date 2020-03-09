@@ -60,6 +60,8 @@
 		F5D407822416C5640080FCAA /* FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077B2416C5630080FCAA /* FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap */; };
 		F5D407832416C5640080FCAA /* 45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077C2416C5630080FCAA /* 45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap */; };
 		F5D407842416C5640080FCAA /* 7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077D2416C5630080FCAA /* 7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap */; };
+		F5D407862416CC150080FCAA /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D407852416CC150080FCAA /* AddTicketViewController.swift */; };
+		F5D407892416D4D30080FCAA /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D407882416D4D30080FCAA /* FirebaseStorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -164,6 +166,8 @@
 		F5D4077B2416C5630080FCAA /* FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap"; path = "Carthage/Build/iOS/FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap"; sourceTree = "<group>"; };
 		F5D4077C2416C5630080FCAA /* 45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap"; path = "Carthage/Build/iOS/45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap"; sourceTree = "<group>"; };
 		F5D4077D2416C5630080FCAA /* 7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap"; path = "Carthage/Build/iOS/7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D407852416CC150080FCAA /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
+		F5D407882416D4D30080FCAA /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +263,7 @@
 		847639DD240C26AB0002D254 /* iTickets */ = {
 			isa = PBXGroup;
 			children = (
+				F5D407872416D4AB0080FCAA /* Services */,
 				847639F5240C2B870002D254 /* Stores */,
 				847639F4240C2B800002D254 /* Models */,
 				847639F2240C2B590002D254 /* VIewControlles */,
@@ -281,6 +286,7 @@
 				843FE974240C548800D3C23D /* TicketsTableViewController.swift */,
 				848CF549240D732F0082EEA2 /* TicketsCellViewController.swift */,
 				848CF553240D93A80082EEA2 /* TicketInfoViewController.swift */,
+				F5D407852416CC150080FCAA /* AddTicketViewController.swift */,
 			);
 			path = VIewControlles;
 			sourceTree = "<group>";
@@ -347,6 +353,14 @@
 				84C35C6F24103C1D002D7D27 /* SQLite.framework.dSYM */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5D407872416D4AB0080FCAA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F5D407882416D4D30080FCAA /* FirebaseStorageService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +469,7 @@
 				84768212240EEA9000A24B2B /* AsyncStoreProtocol.swift in Sources */,
 				848CF54E240D74B80082EEA2 /* TIcketsStore.swift in Sources */,
 				8476821A240EF55A00A24B2B /* SyncStoreProtocol.swift in Sources */,
+				F5D407862416CC150080FCAA /* AddTicketViewController.swift in Sources */,
 				8442530B240C3C9B00521137 /* RegisterViewController.swift in Sources */,
 				847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */,
 				843FE975240C548800D3C23D /* TicketsTableViewController.swift in Sources */,
@@ -463,6 +478,7 @@
 				848CF54A240D732F0082EEA2 /* TicketsCellViewController.swift in Sources */,
 				848CF54C240D74100082EEA2 /* Ticket.swift in Sources */,
 				84768216240EEE2D00A24B2B /* FirebaseAccessor.swift in Sources */,
+				F5D407892416D4D30080FCAA /* FirebaseStorageService.swift in Sources */,
 				847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

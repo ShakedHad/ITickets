@@ -47,4 +47,8 @@ class TicketsStore : AsyncStoreProtocol {
     func add(element:Ticket) {
         remoteDBAccessor.add(element: element);
     }
+    
+    func saveImage(image:UIImage, callback: @escaping (String)->Void){
+        FirebaseStorageService.saveImage(image: image, callback: callback)
+    }
 }
