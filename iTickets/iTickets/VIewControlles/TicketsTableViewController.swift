@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TicketsTableViewController: UITableViewController {
     
@@ -17,6 +18,18 @@ class TicketsTableViewController: UITableViewController {
         super.viewDidLoad();
         
         self.refreshControl = UIRefreshControl();
+        
+        self.reloadData()
+        
+        ModelEvents.TicketAddedDataEvent.observe{
+            self.reloadData()
+        }
+    }
+    
+    @objc func reloadData(){
+        if(self.refreshControl?.isRefreshing == false){
+                self.refreshControl?.beginRefreshing()
+        }
         
         TicketsStore.instance.getAll{(tickets:[Ticket]) in
             self.data = tickets
@@ -52,9 +65,12 @@ class TicketsTableViewController: UITableViewController {
         formatter.dateFormat = "dd/MM/yyyy, HH:mm";
         cell.dateLabel.text = formatter.string(from: currentTicket.time);
         cell.priceLabel.text = String(currentTicket.price)+"₪";
-//        cell.postImageImageVIew.image = currentTicket.image;
         cell.postImageImageVIew.image = UIImage(named: "emptyArtist");
-      
+        
+        if(currentTicket.image != ""){
+            cell.postImageImageVIew.kf.setImage(with: URL(string: currentTicket.image))
+        }
+
         return cell;
     }
     
