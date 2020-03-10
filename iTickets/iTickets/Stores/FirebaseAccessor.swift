@@ -43,7 +43,7 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 let tickets = querySnapshot!.documents.map { (QueryDocumentSnapshot) -> Ticket in
                     var data = QueryDocumentSnapshot.data()
                     data["time"] = (data["time"] as! Timestamp).dateValue();
-                    data["updateTime"] = (data["updateTime"] as! Timestamp).dateValue();
+                    data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
 
                     data["id"] = QueryDocumentSnapshot.documentID;
 
@@ -77,7 +77,8 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 print("Error getting documents: \(err)")
             } else {
                 let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
-                callback((lastUpdatedTicket["updateTime"] as! Timestamp).dateValue());
+                let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as! Timestamp).dateValue()
+                callback(lastUpdatedTicketTime);
             }
         };
     }
