@@ -95,7 +95,7 @@ class FirebaseAccessor: AsyncStoreProtocol {
             if (error != nil) {
 //                authResult?.additionalUserInfo
                 // Add User to users collection
-                self.add(element: User(name: fullName, phone: phone, id: authResult?.additionalUserInfo., emailAddress: emailAddress))
+//                self.add(element: User(name: fullName, phone: phone, id: authResult?.additionalUserInfo., emailAddress: emailAddress))
             }
         }
     }
