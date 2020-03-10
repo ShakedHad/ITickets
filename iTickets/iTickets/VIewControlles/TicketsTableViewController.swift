@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TicketsTableViewController: UITableViewController {
     
@@ -52,8 +53,12 @@ class TicketsTableViewController: UITableViewController {
         formatter.dateFormat = "dd/MM/yyyy, HH:mm";
         cell.dateLabel.text = formatter.string(from: currentTicket.time);
         cell.priceLabel.text = String(currentTicket.price)+"₪";
-//        cell.postImageImageVIew.image = currentTicket.image;
         cell.postImageImageVIew.image = UIImage(named: "emptyArtist");
+        
+        if(currentTicket.image != ""){
+            cell.postImageImageVIew.kf.setImage(with: URL(string: currentTicket.image))
+        }
+
       
         return cell;
     }
