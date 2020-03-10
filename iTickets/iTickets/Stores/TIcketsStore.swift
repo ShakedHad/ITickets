@@ -17,15 +17,6 @@ class TicketsStore : AsyncStoreProtocol {
     var localDBAccessor:SqliteAccesoor = SqliteAccesoor();
     
     private init() {
-//        for _ in 0...10 {
-//        remoteDBAccessor.add(element: Ticket(id:"123",artist: "Ravid Plotnik2", price: 250, time: Date(), location: "Park hayarkon", image: "", seller: User(name: "Shaked Hadas", phone: "0524481484", id: "313161200")));
-//        }
-////
-//        print("bla");
-//        var bla = localDBAccessor.getAll();
-//        localDBAccessor.setLastUpdatedDate(tableName: "tickets", lastUpdatedDate: Date());
-//        var date = localDBAccessor.getLastUpdatedDate(tableName: "tickets");
-//        print (date);
     }
     
     func getAll(callback: @escaping ([Ticket])->Void){

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TicketInfoViewController: UIViewController {
 
@@ -32,8 +33,11 @@ class TicketInfoViewController: UIViewController {
         self.sellerNameLabel.text = ticket!.seller.name;
         self.sellerPhoneLabel.text = ticket!.seller.phone;
         self.priceLabel.text = String(ticket!.price)+"₪";
-//        self.imageView.image = ticket.image;
-        self.imageView.image = UIImage(named: "emptyArtist");
+        self.imageView.image = UIImage(named: "emptyArtist")
+        
+        if(ticket?.image != ""){
+            imageView.kf.setImage(with: URL(string: ticket!.image))
+        }
     }
     
 

@@ -59,7 +59,6 @@ class TicketsTableViewController: UITableViewController {
             cell.postImageImageVIew.kf.setImage(with: URL(string: currentTicket.image))
         }
 
-      
         return cell;
     }
     
