@@ -37,6 +37,7 @@ class TicketsStore : AsyncStoreProtocol {
     
     func add(element:Ticket) {
         remoteDBAccessor.add(element: element);
+        ModelEvents.TicketAddedDataEvent.post();
     }
     
     func saveImage(image:UIImage, callback: @escaping (String)->Void){

@@ -56,7 +56,6 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
 
-    
     func add(element: Ticket) {
         var ref: DocumentReference? = nil
         var ticketJson = try! FirestoreEncoder().encode(element)

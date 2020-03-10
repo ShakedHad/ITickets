@@ -39,7 +39,6 @@ class TicketInfoViewController: UIViewController {
             imageView.kf.setImage(with: URL(string: ticket!.image))
         }
     }
-    
 
     /*
     // MARK: - Navigation

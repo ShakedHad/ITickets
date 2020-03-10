@@ -19,6 +19,18 @@ class TicketsTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl();
         
+        self.reloadData()
+        
+        ModelEvents.TicketAddedDataEvent.observe{
+            self.reloadData()
+        }
+    }
+    
+    @objc func reloadData(){
+        if(self.refreshControl?.isRefreshing == false){
+                self.refreshControl?.beginRefreshing()
+        }
+        
         TicketsStore.instance.getAll{(tickets:[Ticket]) in
             self.data = tickets
             self.tableView.reloadData();
