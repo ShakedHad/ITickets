@@ -142,6 +142,7 @@
                                 <state key="normal" title="Delete Ticket"/>
                                 <connections>
                                     <action selector="addTicket:" destination="uv3-L0-hY2" eventType="touchUpInside" id="4Oy-w0-VtQ"/>
+                                    <action selector="deleteTicket:" destination="pkx-na-vUA" eventType="touchUpInside" id="1pS-ne-YRR"/>
                                     <action selector="updateTicket:" destination="pkx-na-vUA" eventType="touchUpInside" id="w2y-gx-UTj"/>
                                 </connections>
                             </button>
@@ -154,9 +155,12 @@
                         <outlet property="activityIndicator" destination="7gr-fg-sfD" id="sP0-8s-DrR"/>
                         <outlet property="artistTextView" destination="n9I-a6-Uss" id="n5X-xB-PKs"/>
                         <outlet property="datePicker" destination="xzy-7B-MDB" id="BGI-1b-CMp"/>
+                        <outlet property="deleteButton" destination="m82-yT-u8J" id="uNG-AG-PQz"/>
                         <outlet property="image" destination="tYP-pg-OpK" id="fee-Th-DZC"/>
                         <outlet property="locationTextView" destination="LpR-ZY-lNl" id="ZC5-Bh-9Ft"/>
                         <outlet property="priceTextView" destination="VIv-27-ZV1" id="pQK-0K-Jzw"/>
+                        <outlet property="updateButton" destination="mVo-l8-u32" id="ROv-IZ-ib1"/>
+                        <outlet property="updateImageButton" destination="GTg-yd-cLC" id="eRT-ZC-XzF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoG-aj-MGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -19,6 +19,14 @@ class MyTicketsTableViewController: UITableViewController {
         
         self.refreshControl = UIRefreshControl();
         
+        ModelEvents.TicketUpdatedDataEvent.observe{
+            self.reloadData()
+        }
+        
+        ModelEvents.TicketDeletedDataEvent.observe{
+            self.reloadData()
+        }
+        
         self.reloadData()
     }
     
