@@ -37,23 +37,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-4T-UKg">
-                                            <rect key="frame" x="330" y="30" width="45" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Delete"/>
-                                            <connections>
-                                                <action selector="deleteTicket:" destination="CMW-Td-Ssw" eventType="touchUpInside" id="H0K-Uw-GW7"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruo-ml-u3D">
-                                            <rect key="frame" x="338" y="68" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Edit"/>
-                                            <connections>
-                                                <action selector="editTicket:" destination="CMW-Td-Ssw" eventType="touchUpInside" id="VHA-Bd-9qr"/>
-                                                <segue destination="pkx-na-vUA" kind="show" id="8oo-gk-Z4J"/>
-                                            </connections>
-                                        </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zTk-Zu-Sbt">
                                             <rect key="frame" x="20" y="12" width="89" height="86"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -89,19 +72,26 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Tickets" id="2X4-Jv-Cyv"/>
+                    <connections>
+                        <segue destination="pkx-na-vUA" kind="show" identifier="UpdateTicketSegue" id="mcu-an-gvE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWp-qB-hEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2439.130434782609" y="539.0625"/>
         </scene>
-        <!--View Controller-->
+        <!--Update Ticket View Controller-->
         <scene sceneID="bcC-OA-xOd">
             <objects>
-                <viewController id="pkx-na-vUA" sceneMemberID="viewController">
+                <viewController id="pkx-na-vUA" customClass="UpdateTicketViewController" customModule="iTickets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MsT-B4-4MY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYP-pg-OpK">
+                                <rect key="frame" x="20" y="106" width="374" height="162"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Artist" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n9I-a6-Uss">
                                 <rect key="frame" x="20" y="346" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -126,6 +116,7 @@
                                 <state key="normal" title="Update Ticket"/>
                                 <connections>
                                     <action selector="addTicket:" destination="uv3-L0-hY2" eventType="touchUpInside" id="7zD-Tg-NZC"/>
+                                    <action selector="updateTicket:" destination="pkx-na-vUA" eventType="touchUpInside" id="sM2-B9-2VY"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="xzy-7B-MDB">
@@ -138,21 +129,35 @@
                                 <state key="normal" title="Update Image"/>
                                 <connections>
                                     <action selector="addTicket:" destination="uv3-L0-hY2" eventType="touchUpInside" id="Ehh-2X-V8C"/>
+                                    <action selector="updateImage:" destination="pkx-na-vUA" eventType="touchUpInside" id="sbo-ze-xMt"/>
                                 </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="7gr-fg-sfD">
                                 <rect key="frame" x="279" y="298" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYP-pg-OpK">
-                                <rect key="frame" x="20" y="106" width="374" height="162"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m82-yT-u8J">
+                                <rect key="frame" x="47" y="771" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" title="Delete Ticket"/>
+                                <connections>
+                                    <action selector="addTicket:" destination="uv3-L0-hY2" eventType="touchUpInside" id="4Oy-w0-VtQ"/>
+                                    <action selector="updateTicket:" destination="pkx-na-vUA" eventType="touchUpInside" id="w2y-gx-UTj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="NEB-ER-beb"/>
                     </view>
                     <navigationItem key="navigationItem" id="paH-7b-hbX"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="7gr-fg-sfD" id="sP0-8s-DrR"/>
+                        <outlet property="artistTextView" destination="n9I-a6-Uss" id="n5X-xB-PKs"/>
+                        <outlet property="datePicker" destination="xzy-7B-MDB" id="BGI-1b-CMp"/>
+                        <outlet property="image" destination="tYP-pg-OpK" id="fee-Th-DZC"/>
+                        <outlet property="locationTextView" destination="LpR-ZY-lNl" id="ZC5-Bh-9Ft"/>
+                        <outlet property="priceTextView" destination="VIv-27-ZV1" id="pQK-0K-Jzw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoG-aj-MGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
