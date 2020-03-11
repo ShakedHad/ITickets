@@ -66,18 +66,18 @@ class MyTicketsTableViewController: UITableViewController {
         if(currentTicket.image != ""){
             cell.postImageImageVIew.kf.setImage(with: URL(string: currentTicket.image))
         }
-
+        
         return cell;
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTicket = data[indexPath.row];
-        performSegue(withIdentifier: "ticketInfoSegue", sender: self);
+        performSegue(withIdentifier: "UpdateTicketSegue", sender: self);
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ticketInfoSegue" {
-            (segue.destination as! TicketInfoViewController).ticket = selectedTicket;
+        if segue.identifier == "UpdateTicketSegue" {
+            (segue.destination as! UpdateTicketViewController).ticket = selectedTicket;
         }
     }
 }
