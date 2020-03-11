@@ -37,6 +37,8 @@ class Ticket : Encodable, Decodable {
 class ModelEvents {
     static let TicketAddedDataEvent = EventNotificationBase(eventName: "com.shir.TicketAddedDataEvent")
     static let LoggingStateChangedEvent = EventNotificationBase(eventName:"com.shir.LoggingStateChangeEvent")
+        static let TicketUpdatedDataEvent = EventNotificationBase(eventName:"com.shir.TicketUpdatedDataEvent")
+        static let TicketDeletedDataEvent = EventNotificationBase(eventName:"com.shir.TicketDeletedDataEvent")
     
     private init(){}
 }

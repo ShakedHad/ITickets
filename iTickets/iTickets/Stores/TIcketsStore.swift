@@ -52,6 +52,16 @@ class TicketsStore : AsyncStoreProtocol {
         };
     }
     
+    func update(element: Ticket){
+        remoteDBAccessor.update(element: element)
+        ModelEvents.TicketUpdatedDataEvent.post()
+    }
+    
+    func delete(element: Ticket){
+        remoteDBAccessor.delete(element: element)
+        ModelEvents.TicketDeletedDataEvent.post()
+    }
+    
     func add(element:Ticket) {
         remoteDBAccessor.add(element: element);
         ModelEvents.TicketAddedDataEvent.post();
