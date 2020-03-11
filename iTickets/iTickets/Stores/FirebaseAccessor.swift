@@ -91,24 +91,13 @@ class FirebaseAccessor: AsyncStoreProtocol {
     }
     
     func delete(element: Ticket){
-        db.collection("tickets").document(element.id).delete()
+
     }
     
     var serverLastUpdateDate : Date = Date(timeIntervalSince1970: 0)
     
     func update(element: Ticket){
-        getServerLastUpdatedDate(callback: { (date) in
-            self.serverLastUpdateDate = date
-        })
-        
-        db.collection("tickets").document(element.id).updateData([
-            "id": element.id,
-            "artist": element.artist,
-            "image": element.image,
-            "location": element.location,
-            "time": element.time,
-            "updateTime": serverLastUpdateDate
-            ])
+
     }
 
     func add(element: Ticket) {
