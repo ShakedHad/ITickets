@@ -38,6 +38,7 @@
 		843FE975240C548800D3C23D /* TicketsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843FE974240C548800D3C23D /* TicketsTableViewController.swift */; };
 		84425309240C3C8900521137 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84425308240C3C8900521137 /* LoginViewController.swift */; };
 		8442530B240C3C9B00521137 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8442530A240C3C9B00521137 /* RegisterViewController.swift */; };
+		8472A66E2416DDF500D213D9 /* UsersStrore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472A66D2416DDF500D213D9 /* UsersStrore.swift */; };
 		847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639DE240C26AB0002D254 /* AppDelegate.swift */; };
 		847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847639E0240C26AB0002D254 /* SceneDelegate.swift */; };
 		847639E6240C26AB0002D254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847639E4240C26AB0002D254 /* Main.storyboard */; };
@@ -109,6 +110,7 @@
 		843FE974240C548800D3C23D /* TicketsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsTableViewController.swift; sourceTree = "<group>"; };
 		84425308240C3C8900521137 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8442530A240C3C9B00521137 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8472A66D2416DDF500D213D9 /* UsersStrore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersStrore.swift; sourceTree = "<group>"; };
 		847639DB240C26AB0002D254 /* iTickets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTickets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847639DE240C26AB0002D254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847639E0240C26AB0002D254 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				848CF54D240D74B80082EEA2 /* TIcketsStore.swift */,
 				84768213240EEE1E00A24B2B /* SqliteAccessor.swift */,
 				84768215240EEE2D00A24B2B /* FirebaseAccessor.swift */,
+				8472A66D2416DDF500D213D9 /* UsersStrore.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84768214240EEE1E00A24B2B /* SqliteAccessor.swift in Sources */,
+				8472A66E2416DDF500D213D9 /* UsersStrore.swift in Sources */,
 				84425309240C3C8900521137 /* LoginViewController.swift in Sources */,
 				84768212240EEA9000A24B2B /* AsyncStoreProtocol.swift in Sources */,
 				848CF54E240D74B80082EEA2 /* TIcketsStore.swift in Sources */,
