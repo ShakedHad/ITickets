@@ -82,34 +82,4 @@ class FirebaseAccessor: AsyncStoreProtocol {
             }
         };
     }
-    
-    func login(emailAddress:String, password:String, callback:()->Void) {
-        Auth.auth().signIn(withEmail: emailAddress, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
-          // ...
-        }
-    }
-    
-    func register(emailAddress:String, password:String, phone:String, fullName:String, callback:()->Void) {
-        Auth.auth().createUser(withEmail: emailAddress, password: password) { authResult, error in
-            if (error != nil) {
-//                authResult?.additionalUserInfo
-                // Add User to users collection
-                self.add(element: User(name: fullName, phone: phone, id: authResult?.additionalUserInfo., emailAddress: emailAddress))
-            }
-        }
-    }
-    
-    func add(element:User) {
-        var ref: DocumentReference? = nil
-        let userJson = try! FirestoreEncoder().encode(element)
-        
-        ref = db.collection("users").addDocument(data: userJson) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-    }
 }
