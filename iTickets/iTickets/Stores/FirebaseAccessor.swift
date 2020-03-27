@@ -55,6 +55,18 @@ class FirebaseAccessor: AsyncStoreProtocol {
             }
         }
     }
+    
+    func get(userId:String, callback: @escaping (User)->Void) {
+        db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
+            if let document = querySnapshot?.documents[0], querySnapshot!.documents[0].exists {
+                let decoder = FirestoreDecoder();
+                let user = try! decoder.decode(User.self, from: document.data())
+                callback(user);
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
 
     func add(element: Ticket) {
         var ref: DocumentReference? = nil
@@ -83,19 +95,18 @@ class FirebaseAccessor: AsyncStoreProtocol {
         };
     }
     
-    func login(emailAddress:String, password:String, callback:()->Void) {
+    func login(emailAddress:String, password:String, callback: @escaping ()->Void) {
         Auth.auth().signIn(withEmail: emailAddress, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
-          // ...
+            guard let strongSelf = self else { return }
+            callback();
         }
     }
     
-    func register(emailAddress:String, password:String, phone:String, fullName:String, callback:()->Void) {
+    func register(emailAddress:String, password:String, phone:String, fullName:String, callback: @escaping ()->Void) {
         Auth.auth().createUser(withEmail: emailAddress, password: password) { authResult, error in
-            if (error != nil) {
-//                authResult?.additionalUserInfo
-                // Add User to users collection
-//                self.add(element: User(name: fullName, phone: phone, id: authResult?.additionalUserInfo., emailAddress: emailAddress))
+            if (error == nil) {
+                self.add(element: User(name: fullName, phone: phone, id: (authResult?.user.uid)!, emailAddress: emailAddress));
+                callback();
             }
         }
     }
@@ -110,6 +121,13 @@ class FirebaseAccessor: AsyncStoreProtocol {
             } else {
                 print("Document added with ID: \(ref!.documentID)")
             }
+        }
+    }
+    
+    func getLoggedUser(callback: @escaping (User)->Void) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            get(userId: user.uid, callback: callback);
         }
     }
 }

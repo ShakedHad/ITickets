@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var PasswordTextView: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        PasswordTextView.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
     

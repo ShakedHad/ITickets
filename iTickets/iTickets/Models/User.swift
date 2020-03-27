@@ -12,7 +12,7 @@ class User : Encodable, Decodable {
     var name:String;
     var phone:String;
     var id:String;
-    var emailAddress:String;
+    var emailAddress:String?;
     
     init(name:String, phone:String, id:String, emailAddress:String) {
         self.name = name;

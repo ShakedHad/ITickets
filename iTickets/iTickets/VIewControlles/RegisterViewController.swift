@@ -16,7 +16,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextView: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        passwordTextView.isSecureTextEntry = true
         // Do any additional setup after loading the view.
     }
     
