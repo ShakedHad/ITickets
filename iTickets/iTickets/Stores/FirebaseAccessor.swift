@@ -91,7 +91,14 @@ class FirebaseAccessor: AsyncStoreProtocol {
     }
     
     func delete(element: Ticket){
-
+        // TODO: get real id
+        db.collection("tickets").document("5").delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
     }
     
     var serverLastUpdateDate : Date = Date(timeIntervalSince1970: 0)
