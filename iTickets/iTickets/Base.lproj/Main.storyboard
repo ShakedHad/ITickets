@@ -86,11 +86,13 @@
                     <connections>
                         <outlet property="EmailAddressTextView" destination="b5M-1c-Dgw" id="zTy-PT-WFQ"/>
                         <outlet property="PasswordTextView" destination="cAe-ib-Qhb" id="g1N-ue-PN9"/>
+                        <segue destination="Fa5-eN-7XC" kind="unwind" identifier="loggedSegue" unwindAction="unwindWithSegue:" id="LOX-wg-nTN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQZ-VK-OSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Fa5-eN-7XC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1766.6666666666667" y="1245.5357142857142"/>
+            <point key="canvasLocation" x="1720" y="1259"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="eZT-5X-9YF">
@@ -168,6 +170,7 @@
         <scene sceneID="Buk-CC-OGh">
             <objects>
                 <navigationController id="yCB-Oc-PLs" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="E5U-fv-0xB"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d5n-Rn-k1s">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -432,6 +435,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="jvT-bv-rxZ">
+                        <barButtonItem key="leftBarButtonItem" title="Login" id="Zlj-yR-Npg">
+                            <connections>
+                                <segue destination="yCB-Oc-PLs" kind="show" id="F3v-wd-IQD"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="zMY-eQ-4SP">
                             <connections>
                                 <segue destination="uv3-L0-hY2" kind="show" id="OY8-2X-uyA"/>
@@ -450,6 +458,7 @@
         <scene sceneID="V8b-aA-fbT">
             <objects>
                 <tabBarController id="Mph-7Y-JZD" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="S9Z-Ih-iDT"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GkH-Jh-VF9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

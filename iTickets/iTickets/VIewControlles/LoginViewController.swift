@@ -21,9 +21,12 @@ class LoginViewController: UIViewController {
 
     @IBAction func Login(_ sender: Any) {
         UsersStore.instance.login(emailAddress: EmailAddressTextView!.text!, password: PasswordTextView!.text!) {
-            
+            print("logged in");
+            self.performSegue(withIdentifier: "loggedSegue", sender: self);
         }
-    }
+    }    
+    
+    
     /*
     // MARK: - Navigation
 
