@@ -158,9 +158,11 @@
                         <outlet property="fullNameTextView" destination="eGy-hj-Lge" id="RDx-A4-916"/>
                         <outlet property="passwordTextView" destination="Wx7-J4-HoD" id="74r-aw-OcJ"/>
                         <outlet property="phoneTextView" destination="8DY-uN-7BK" id="NLe-WF-byg"/>
+                        <segue destination="TjK-HM-9ni" kind="unwind" identifier="registeredSegue" unwindAction="unwindFromRegisterWithSegue:" id="vD0-OY-wq1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0T-mw-nLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TjK-HM-9ni" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2470" y="1246"/>
         </scene>

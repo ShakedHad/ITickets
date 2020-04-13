@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     @IBAction func Login(_ sender: Any) {
         UsersStore.instance.login(emailAddress: EmailAddressTextView!.text!, password: PasswordTextView!.text!) {
             print("logged in");
-//            self.performSegue(withIdentifier: "loggedSegue", sender: self);
+
             self.navigationController?.popViewController(animated: true);
             if let sender = self.sender{
                 sender.onLoginSuccess()
@@ -44,6 +44,15 @@ class LoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true);
         if let sender = self.sender{
             sender.onLoginFailed();
+        }
+    }
+    
+    @IBAction func unwindFromRegister(segue: UIStoryboardSegue) {
+        print("unwinded")
+        self.navigationController?.popViewController(animated: true);
+        self.navigationController?.popViewController(animated: true);
+        if let sender = self.sender{
+            sender.onLoginSuccess()
         }
     }
     
