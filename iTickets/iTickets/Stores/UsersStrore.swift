@@ -19,6 +19,10 @@ class UsersStore {
         firebaseAccessor.login(emailAddress: emailAddress, password: password, callback: callback);
     }
     
+    func logout() {
+        firebaseAccessor.logout();
+    }
+    
     func register(emailAddress:String, password:String, phone:String, fullName:String, callback: @escaping ()->Void) {
         firebaseAccessor.register(emailAddress: emailAddress, password: password,phone: phone, fullName: fullName, callback: callback);
     }
@@ -29,5 +33,9 @@ class UsersStore {
     
     func getLoggedUser(callback:@escaping (User)->Void) {
         firebaseAccessor.getLoggedUser(callback: callback);
+    }
+    
+    func doesUserLogged() -> Bool {
+        firebaseAccessor.doesUserLogged();
     }
 }

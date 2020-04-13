@@ -26,7 +26,7 @@
         <!--Login View Controller-->
         <scene sceneID="K20-65-FXU">
             <objects>
-                <viewController id="tVo-Lz-3SF" customClass="LoginViewController" customModule="iTickets" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="tVo-Lz-3SF" customClass="LoginViewController" customModule="iTickets" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFit" id="oxi-5z-XFJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,11 +86,9 @@
                     <connections>
                         <outlet property="EmailAddressTextView" destination="b5M-1c-Dgw" id="zTy-PT-WFQ"/>
                         <outlet property="PasswordTextView" destination="cAe-ib-Qhb" id="g1N-ue-PN9"/>
-                        <segue destination="Fa5-eN-7XC" kind="unwind" identifier="loggedSegue" unwindAction="unwindWithSegue:" id="LOX-wg-nTN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQZ-VK-OSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Fa5-eN-7XC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1720" y="1259"/>
         </scene>
@@ -160,9 +158,11 @@
                         <outlet property="fullNameTextView" destination="eGy-hj-Lge" id="RDx-A4-916"/>
                         <outlet property="passwordTextView" destination="Wx7-J4-HoD" id="74r-aw-OcJ"/>
                         <outlet property="phoneTextView" destination="8DY-uN-7BK" id="NLe-WF-byg"/>
+                        <segue destination="TjK-HM-9ni" kind="unwind" identifier="registeredSegue" unwindAction="unwindFromRegisterWithSegue:" id="vD0-OY-wq1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0T-mw-nLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="TjK-HM-9ni" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2470" y="1246"/>
         </scene>

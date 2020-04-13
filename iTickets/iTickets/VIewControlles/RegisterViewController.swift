@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func Register(_ sender: Any) {
         UsersStore.instance.register(emailAddress: emailAddressTextView.text!, password: passwordTextView.text!, phone: phoneTextView.text!, fullName: fullNameTextView.text!) {
-            
+                self.performSegue(withIdentifier: "registeredSegue", sender: self);
         }
     }
     
