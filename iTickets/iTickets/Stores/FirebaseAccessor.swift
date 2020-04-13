@@ -102,6 +102,10 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
     
+    func logout() {
+        try! Auth.auth().signOut();
+    }
+    
     func register(emailAddress:String, password:String, phone:String, fullName:String, callback: @escaping ()->Void) {
         Auth.auth().createUser(withEmail: emailAddress, password: password) { authResult, error in
             if (error == nil) {
@@ -129,5 +133,10 @@ class FirebaseAccessor: AsyncStoreProtocol {
         if let user = user {
             get(userId: user.uid, callback: callback);
         }
+    }
+    
+    func doesUserLogged() -> Bool {
+        let user = Auth.auth().currentUser;
+        return user != nil;
     }
 }

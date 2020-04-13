@@ -9,8 +9,7 @@
 import UIKit
 import Kingfisher
 
-class TicketsTableViewController: UITableViewController {
-    
+class TicketsTableViewController: UITableViewController, authenticationDelegate {
     var data = [Ticket]();
     var selectedTicket:Ticket?;
 
@@ -24,6 +23,33 @@ class TicketsTableViewController: UITableViewController {
         ModelEvents.TicketAddedDataEvent.observe{
             self.reloadData()
         }
+        
+        drawloginlogoutbuttons();
+    }
+    
+    func drawloginlogoutbuttons() {
+        if UsersStore.instance.doesUserLogged() {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.logout(sender:)));
+        } else {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.login(sender:)));
+        }
+    }
+    
+    @objc func login(sender: UIBarButtonItem) {
+        LoginViewController.show(sender: self);
+    }
+    
+    func onLoginSuccess() {
+        drawloginlogoutbuttons();
+    }
+    
+    func onLoginFailed() {
+        
+    }
+    
+    @objc func logout(sender: UIBarButtonItem) {
+        UsersStore.instance.logout();
+        drawloginlogoutbuttons();
     }
     
     @objc func reloadData(){
@@ -85,12 +111,8 @@ class TicketsTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func unwind(segue: UIStoryboardSegue) {
-        print("unwind");
-    }
     
     
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
