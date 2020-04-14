@@ -56,18 +56,8 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
     
-    func getUserTickets(id:String, since:Date, callback: @escaping (([Ticket])->Void)) {
-        db.collection("tickets").whereField("updateTime", isGreaterThan: Timestamp(date: since)).getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                let tickets = querySnapshot!.documents.map { (QueryDocumentSnapshot) -> Ticket in
-                    var data = QueryDocumentSnapshot.data()
-                    data["time"] = (data["time"] as! Timestamp).dateValue();
-                    data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
-    
     func get(userId:String, callback: @escaping (User)->Void) {
-        db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
+        self.db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
             if let document = querySnapshot?.documents[0], querySnapshot!.documents[0].exists {
                 let decoder = FirestoreDecoder();
                 let user = try! decoder.decode(User.self, from: document.data())
@@ -77,6 +67,16 @@ class FirebaseAccessor: AsyncStoreProtocol {
             }
         }
     }
+    
+    func getUserTickets(id:String, since:Date, callback: @escaping (([Ticket])->Void)) {
+        db.collection("tickets").whereField("updateTime", isGreaterThan: Timestamp(date: since)).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let tickets = querySnapshot!.documents.map { (QueryDocumentSnapshot) -> Ticket in
+                    var data = QueryDocumentSnapshot.data()
+                    data["time"] = (data["time"] as! Timestamp).dateValue();
+                    data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
 
                     data["id"] = QueryDocumentSnapshot.documentID;
 

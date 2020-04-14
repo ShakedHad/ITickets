@@ -439,22 +439,6 @@
             </objects>
             <point key="canvasLocation" x="3282.608695652174" y="-578.57142857142856"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Buk-CC-OGh">
-            <objects>
-                <navigationController id="yCB-Oc-PLs" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d5n-Rn-k1s">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="tVo-Lz-3SF" kind="relationship" relationship="rootViewController" id="krx-3L-ONC"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="afh-6U-9oG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="954" y="1259"/>
-        </scene>
         <!--Ticket Info-->
         <scene sceneID="fUX-aS-krA">
             <objects>
