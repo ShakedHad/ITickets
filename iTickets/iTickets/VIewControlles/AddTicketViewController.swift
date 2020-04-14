@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, authenticationDelegate {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var artistTextView: UITextField!
     @IBOutlet weak var priceTextView: UITextField!
@@ -21,9 +21,12 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
         var selectedImage: UIImage?
     override func viewDidLoad() {
         activityIndicator.isHidden = true
+        
+        if !UsersStore.instance.doesUserLogged() {
+            LoginViewController.show(sender: self);
+        }
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func addTicket(_ sender: Any) {
@@ -41,7 +44,7 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
         TicketsStore.instance.saveImage(image: image) { (url) in
                 print("saved image url \(url)");
                 
-                let seller = User(name: "Shir", phone: "0546774799", id: "315005660")
+                let seller = User(name: "Shir", phone: "0546774799", id: "315005660", emailAddress: "bla")
                 
                 let ticket = Ticket(artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: seller)
                 TicketsStore.instance.add(element: ticket)
@@ -67,6 +70,14 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
         
         self.image.image = selectedImage
         dismiss(animated: true, completion: nil)
+    }
+    
+    func onLoginSuccess() {
+        print("Successfull login");
+    }
+    
+    func onLoginFailed() {
+        self.navigationController?.popViewController(animated: false);
     }
     
     

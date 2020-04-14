@@ -65,6 +65,18 @@ class FirebaseAccessor: AsyncStoreProtocol {
                     var data = QueryDocumentSnapshot.data()
                     data["time"] = (data["time"] as! Timestamp).dateValue();
                     data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
+    
+    func get(userId:String, callback: @escaping (User)->Void) {
+        db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
+            if let document = querySnapshot?.documents[0], querySnapshot!.documents[0].exists {
+                let decoder = FirestoreDecoder();
+                let user = try! decoder.decode(User.self, from: document.data())
+                callback(user);
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
 
                     data["id"] = QueryDocumentSnapshot.documentID;
 
@@ -120,5 +132,50 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 callback(lastUpdatedTicketTime);
             }
         };
+    }
+    
+    func login(emailAddress:String, password:String, callback: @escaping ()->Void) {
+        Auth.auth().signIn(withEmail: emailAddress, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            callback();
+        }
+    }
+    
+    func logout() {
+        try! Auth.auth().signOut();
+    }
+    
+    func register(emailAddress:String, password:String, phone:String, fullName:String, callback: @escaping ()->Void) {
+        Auth.auth().createUser(withEmail: emailAddress, password: password) { authResult, error in
+            if (error == nil) {
+                self.add(element: User(name: fullName, phone: phone, id: (authResult?.user.uid)!, emailAddress: emailAddress));
+                callback();
+            }
+        }
+    }
+    
+    func add(element:User) {
+        var ref: DocumentReference? = nil
+        let userJson = try! FirestoreEncoder().encode(element)
+        
+        ref = db.collection("users").addDocument(data: userJson) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }
+    }
+    
+    func getLoggedUser(callback: @escaping (User)->Void) {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            get(userId: user.uid, callback: callback);
+        }
+    }
+    
+    func doesUserLogged() -> Bool {
+        let user = Auth.auth().currentUser;
+        return user != nil;
     }
 }
