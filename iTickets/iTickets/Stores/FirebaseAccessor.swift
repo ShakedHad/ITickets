@@ -46,9 +46,9 @@ class FirebaseAccessor: AsyncStoreProtocol {
                     data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
 
                     data["id"] = QueryDocumentSnapshot.documentID;
-
+                    
                     let decoder = FirestoreDecoder();
-                    let ticket = try! decoder.decode(Ticket.self, from: data)
+                    let ticket = try! decoder.decode(Ticket.self, from: data);
                     return ticket;
                 }
                 callback(tickets);
@@ -66,18 +66,6 @@ class FirebaseAccessor: AsyncStoreProtocol {
                     data["time"] = (data["time"] as! Timestamp).dateValue();
                     data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
     
-    func get(userId:String, callback: @escaping (User)->Void) {
-        db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
-            if let document = querySnapshot?.documents[0], querySnapshot!.documents[0].exists {
-                let decoder = FirestoreDecoder();
-                let user = try! decoder.decode(User.self, from: document.data())
-                callback(user);
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
-
                     data["id"] = QueryDocumentSnapshot.documentID;
 
                     let decoder = FirestoreDecoder();
@@ -86,6 +74,18 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 }
                 
                 callback(tickets);
+            }
+        }
+    }
+    
+    func get(userId:String, callback: @escaping (User)->Void) {
+        self.db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
+            if let document = querySnapshot?.documents[0], querySnapshot!.documents[0].exists {
+                let decoder = FirestoreDecoder();
+                let user = try! decoder.decode(User.self, from: document.data())
+                callback(user);
+            } else {
+                print("Document does not exist")
             }
         }
     }
