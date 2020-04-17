@@ -115,6 +115,15 @@ class SqliteAccesoor: SyncStoreProtocol {
         }
     }
     
+    func delete(element: Ticket){
+        do {
+            let ticketToDelete = ticketsTable.filter(ticketId == element.id)
+            try db?.run(ticketToDelete.delete())
+            } catch let err {
+                print("Error while deleting ticket: \(err)")
+            }
+    }
+    
     func getLastUpdatedDate(tableName:String)->Date {
         do {
             let date = (try (db?.prepare(lastUpdatedDateTable.filter(tableNameColumn == tableName)))!).first(where: {row in true});

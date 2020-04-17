@@ -59,6 +59,7 @@ class TicketsStore : AsyncStoreProtocol {
     
     func delete(element: Ticket){
         remoteDBAccessor.delete(element: element)
+        localDBAccessor.delete(element: element)
         ModelEvents.TicketDeletedDataEvent.post()
     }
     
