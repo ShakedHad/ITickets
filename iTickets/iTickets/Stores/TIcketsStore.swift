@@ -35,10 +35,10 @@ class TicketsStore : AsyncStoreProtocol {
         };
     }
     
-    func getUserTickets(id: String, callback: @escaping ([Ticket])->Void){
+    func getUserTickets(seller: User, callback: @escaping ([Ticket])->Void){
         let cacheLastUpdatedDate = localDBAccessor.getLastUpdatedDate(tableName: "tickets");
         
-        remoteDBAccessor.getUserTickets(id: id, since: cacheLastUpdatedDate) { newTickets in
+        remoteDBAccessor.getUserTickets(seller: seller, since: cacheLastUpdatedDate) { newTickets in
             for ticket in newTickets {
                 self.localDBAccessor.add(element: ticket);
             }

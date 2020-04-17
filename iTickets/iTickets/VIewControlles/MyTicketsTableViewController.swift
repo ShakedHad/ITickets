@@ -35,11 +35,13 @@ class MyTicketsTableViewController: UITableViewController {
                 self.refreshControl?.beginRefreshing()
         }
         
-        TicketsStore.instance.getUserTickets(id: "String"){(tickets:[Ticket]) in
-            self.data = tickets
-            self.tableView.reloadData();
-            self.refreshControl?.endRefreshing();
-        };
+        UsersStore.instance.getLoggedUser {user in
+            TicketsStore.instance.getUserTickets(seller: user){(tickets:[Ticket]) in
+                self.data = tickets
+                self.tableView.reloadData();
+                self.refreshControl?.endRefreshing();
+            };
+        }
     }
 
     // MARK: - Table view data source

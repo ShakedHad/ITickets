@@ -56,8 +56,8 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
     
-    func getUserTickets(id:String, since:Date, callback: @escaping (([Ticket])->Void)) {
-        db.collection("tickets").whereField("updateTime", isGreaterThan: Timestamp(date: since)).getDocuments() { (querySnapshot, err) in
+    func getUserTickets(seller:User, since:Date, callback: @escaping (([Ticket])->Void)) {
+        db.collection("tickets").whereField("seller.id", isEqualTo: seller.id).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
