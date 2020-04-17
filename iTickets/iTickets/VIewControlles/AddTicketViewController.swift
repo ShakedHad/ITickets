@@ -45,7 +45,7 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
                 print("saved image url \(url)");
                 
             UsersStore.instance.getLoggedUser { (currentUser) in
-                    let ticket = Ticket(artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: currentUser)
+                let ticket = Ticket(id: "", artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: currentUser)
                     TicketsStore.instance.add(element: ticket)
                             self.navigationController?.popViewController(animated: true);
                 }

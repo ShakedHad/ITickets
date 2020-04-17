@@ -11,15 +11,12 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure();
         
-        if (UsersStore.instance.doesUserLogged()) {
-                UsersStore.instance.logout();
-        }
+//        if (UsersStore.instance.doesUserLogged()) {
+//                UsersStore.instance.logout();
+//        }
         // Override point for customization after application launch.
         return true
     }

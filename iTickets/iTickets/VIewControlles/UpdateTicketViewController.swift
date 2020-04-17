@@ -48,9 +48,9 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
                 
             let seller = User(name: "Shir", phone: "0546774799", id: "315005660", emailAddress: "")
                 
-                let ticket = Ticket(artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: seller)
+            let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: seller)
             
-                TicketsStore.instance.update(element: ticket)
+                TicketsStore.instance.update(element: updatedTicket)
                 }
             }
         }
@@ -58,7 +58,7 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func deleteTicket(_ sender: Any) {
         performTicketStoreAction(){
-    TicketsStore.instance.delete(element: ticket!)
+            TicketsStore.instance.delete(element: self.ticket!)
         }
     }
     

@@ -80,7 +80,7 @@ class SqliteAccesoor: SyncStoreProtocol {
         do {
             let tickets = (try (db?.prepare(ticketsTable.join(usersTable, on: userId == sellerID)))!).map { (ticketRow) -> Ticket in
 
-                return Ticket(artist: ticketRow[artist],
+                return Ticket(id:ticketRow[ticketId], artist: ticketRow[artist],
                       price: ticketRow[price],
                       time: ticketRow[time],
                   location: ticketRow[location],

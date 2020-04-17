@@ -92,7 +92,7 @@ class FirebaseAccessor: AsyncStoreProtocol {
     
     func delete(element: Ticket){
         // TODO: get real id
-        db.collection("tickets").document("5").delete() { err in
+        db.collection("tickets").document(element.id).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
