@@ -18,6 +18,7 @@ class MyTicketsTableViewController: UITableViewController {
         super.viewDidLoad();
         
         self.refreshControl = UIRefreshControl();
+        self.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         
         ModelEvents.TicketUpdatedDataEvent.observe{
             self.reloadData()
