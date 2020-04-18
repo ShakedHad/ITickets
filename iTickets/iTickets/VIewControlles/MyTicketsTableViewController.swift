@@ -13,7 +13,9 @@ class MyTicketsTableViewController: UITableViewController {
     
     var data = [Ticket]();
     var selectedTicket:Ticket?;
-
+    @IBOutlet weak var userGreeting: UILabel!
+    @IBOutlet weak var userImg: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -55,6 +57,8 @@ class MyTicketsTableViewController: UITableViewController {
         }
         
         UsersStore.instance.getLoggedUser {user in
+            self.userGreeting.text = "Hi! " + user.name
+            
             TicketsStore.instance.getUserTickets(seller: user){(tickets:[Ticket]) in
                 self.data = tickets
                 self.tableView.reloadData();
