@@ -28,6 +28,10 @@ class MyTicketsTableViewController: UITableViewController {
             self.reloadData()
         }
         
+        ModelEvents.TicketAddedDataEvent.observe{
+            self.reloadData()
+        }
+        
         self.reloadData()
     }
     
