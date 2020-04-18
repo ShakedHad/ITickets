@@ -58,6 +58,12 @@ class MyTicketsTableViewController: UITableViewController {
         
         UsersStore.instance.getLoggedUser {user in
             self.userGreeting.text = "Hi! " + user.name
+        
+            let url = user.avatarUrl
+        
+            if (url != nil) {
+            self.userImg.kf.setImage(with: URL(string: url!))
+            }
             
             TicketsStore.instance.getUserTickets(seller: user){(tickets:[Ticket]) in
                 self.data = tickets
