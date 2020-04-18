@@ -29,8 +29,9 @@ class TicketsStore : AsyncStoreProtocol {
             self.remoteDBAccessor.getServerLastUpdatedDate() { serverLastUpdatedDate in
                 self.localDBAccessor.setLastUpdatedDate(tableName: "tickets", lastUpdatedDate: serverLastUpdatedDate);
                 let allTickets = self.localDBAccessor.getAll();
-                
-                callback(allTickets)
+                callback(allTickets.filter { (currentTicket) -> Bool in
+                    return !currentTicket.isDeleted
+                });
             };
         };
     }
@@ -46,11 +47,8 @@ class TicketsStore : AsyncStoreProtocol {
     func update(element: Ticket, callback: @escaping ()->Void){
         remoteDBAccessor.update(element: element) { () in
             callback()
+            ModelEvents.TicketUpdatedDataEvent.post()
         }
-        
-        // deleting the pre updated ticket on localdb
-        localDBAccessor.delete(element: element)
-        ModelEvents.TicketUpdatedDataEvent.post()
     }
     
     func delete(element: Ticket, callback: @escaping ()->Void){

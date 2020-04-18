@@ -56,7 +56,7 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
                     print("saved image url \(url)");
                     imgUrl = url
                     
-                    let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user)
+                    let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user, isDeleted: self.ticket!.isDeleted)
                     
                     TicketsStore.instance.update(element: updatedTicket) { () in
                         self.navigationController?.popViewController(animated: true);
@@ -65,7 +65,7 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
             }
                 // the user didn't update the image
             else {
-                let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user)
+                let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user, isDeleted: self.ticket!.isDeleted)
                 
                 TicketsStore.instance.update(element: updatedTicket) { () in
                     self.navigationController?.popViewController(animated: true);

@@ -21,10 +21,11 @@ class SqliteAccesoor: SyncStoreProtocol {
     let ticketId = Expression<String>("ticketId");
     let artist = Expression<String>("artist");
     let price = Expression<Int>("price");
-    let time = Expression<Date>("time")
-    let location = Expression<String>("location")
-    let image = Expression<String>("image")
-    let sellerID = Expression<String>("sellerID")
+    let time = Expression<Date>("time");
+    let location = Expression<String>("location");
+    let image = Expression<String>("image");
+    let sellerID = Expression<String>("sellerID");
+    let isDeleted = Expression<Bool>("isDeleted");
     
     let lastUpdatedDateTable = Table("lastUpdatedDate");
     let tableNameColumn = Expression<String>("tableName");
@@ -63,6 +64,7 @@ class SqliteAccesoor: SyncStoreProtocol {
                 t.column(location)
                 t.column(image)
                 t.column(sellerID)
+                t.column(isDeleted)
                 t.foreignKey(sellerID, references: usersTable, userId, delete: .setNull)
             });
             
@@ -85,7 +87,7 @@ class SqliteAccesoor: SyncStoreProtocol {
                       time: ticketRow[time],
                   location: ticketRow[location],
                   image: ticketRow[image],
-                  seller: User(name: ticketRow[name], phone: ticketRow[phone], id: ticketRow[userId], emailAddress: ""))
+                  seller: User(name: ticketRow[name], phone: ticketRow[phone], id: ticketRow[userId], emailAddress: ""), isDeleted: ticketRow[isDeleted])
             }
             
             return tickets;
@@ -109,6 +111,7 @@ class SqliteAccesoor: SyncStoreProtocol {
                                        time <- element.time,
                                        location <- element.location,
                                        image <- element.image,
+                                       isDeleted <- element.isDeleted,
                                        sellerID <- element.seller.id));
         } catch let err {
             print("Error while adding ticket: \(err)")
