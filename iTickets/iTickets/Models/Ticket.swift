@@ -40,6 +40,8 @@ class ModelEvents {
     static let LoggingStateChangedEvent = EventNotificationBase(eventName:"com.shir.LoggingStateChangeEvent")
     static let TicketUpdatedDataEvent = EventNotificationBase(eventName:"com.shir.TicketUpdatedDataEvent")
     static let TicketDeletedDataEvent = EventNotificationBase(eventName:"com.shir.TicketDeletedDataEvent")
+    static let UserLoggedInEvent = EventNotificationBase(eventName:"com.shir.UserLoggedInEvent")
+    static let UserLoggedOutEvent = EventNotificationBase(eventName:"com.shir.UserLoggedOutEvent")
     
     private init(){}
 }

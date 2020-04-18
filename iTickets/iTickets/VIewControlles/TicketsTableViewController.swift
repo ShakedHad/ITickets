@@ -13,7 +13,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     var data = [Ticket]();
     var selectedTicket:Ticket?;
     var myTicketsViewController:UIViewController?;
-
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -34,33 +34,21 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
             self.reloadData()
         }
         
-        myTicketsViewController = (self.tabBarController?.viewControllers![1])!;
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated);
-        
-        drawloginlogoutbuttons();
-    }
-    
-    func drawloginlogoutbuttons() {
-        if UsersStore.instance.doesUserLogged() {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.logout(sender:)));
-            if (self.tabBarController?.viewControllers?.count == 1) {
-                var tabsViewControllers = self.tabBarController?.viewControllers;
-                tabsViewControllers?.append(self.myTicketsViewController!);
-                self.tabBarController?.viewControllers = tabsViewControllers;
-            }
-            
-        } else {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.login(sender:)));
-            if (self.tabBarController?.viewControllers?.count == 2) {
-                var tabsViewControllers = self.tabBarController?.viewControllers;
-                tabsViewControllers?.removeLast();
-                self.tabBarController?.viewControllers = tabsViewControllers;
-            }
+        ModelEvents.UserLoggedInEvent.observe {
+            self.drawLogin()
         }
+        
+        ModelEvents.UserLoggedOutEvent.observe {
+            self.drawLogout()
+        }
+        
+        if UsersStore.instance.doesUserLogged() {
+            drawLogin()
+        } else {
+            drawLogout()
+        }
+        
+        myTicketsViewController = (self.tabBarController?.viewControllers![1])!;
     }
     
     @objc func login(sender: UIBarButtonItem) {
@@ -68,7 +56,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     }
     
     func onLoginSuccess() {
-        drawloginlogoutbuttons();
+        ModelEvents.UserLoggedInEvent.post()
     }
     
     func onLoginFailed() {
@@ -77,12 +65,12 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     
     @objc func logout(sender: UIBarButtonItem) {
         UsersStore.instance.logout();
-        drawloginlogoutbuttons();
+        ModelEvents.UserLoggedOutEvent.post()
     }
     
     @objc func reloadData(){
         if(self.refreshControl?.isRefreshing == false){
-                self.refreshControl?.beginRefreshing()
+            self.refreshControl?.beginRefreshing()
         }
         
         TicketsStore.instance.getAll{(tickets:[Ticket]) in
@@ -91,13 +79,31 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
             self.refreshControl?.endRefreshing();
         };
     }
+    
+    func drawLogin(){
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.logout(sender:)));
+        if (self.tabBarController?.viewControllers?.count == 1) {
+            var tabsViewControllers = self.tabBarController?.viewControllers;
+            tabsViewControllers?.append(self.myTicketsViewController!);
+            self.tabBarController?.viewControllers = tabsViewControllers;
+        }
+    }
+    
+    func drawLogout(){
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.login(sender:)));
+        if (self.tabBarController?.viewControllers?.count == 2) {
+            var tabsViewControllers = self.tabBarController?.viewControllers;
+            tabsViewControllers?.removeLast();
+            self.tabBarController?.viewControllers = tabsViewControllers;
+        }
+    }
 
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return data.count
@@ -106,7 +112,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ("Tickets Feed");
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:TicketsCellViewController = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketsCellViewController
@@ -124,7 +130,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         if(currentTicket.image != ""){
             cell.postImageImageVIew.kf.setImage(with: URL(string: currentTicket.image))
         }
-
+        
         return cell;
     }
     
@@ -132,7 +138,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         selectedTicket = data[indexPath.row];
         performSegue(withIdentifier: "ticketInfoSegue", sender: self);
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ticketInfoSegue" {
             (segue.destination as! TicketInfoViewController).ticket = selectedTicket;
@@ -142,40 +148,40 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     
     
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
     
-
+    /*
+     // Override to support editing the table view.
+     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+     if editingStyle == .delete {
+     // Delete the row from the data source
+     tableView.deleteRows(at: [indexPath], with: .fade)
+     } else if editingStyle == .insert {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     }
+     }
+     */
+    
+    /*
+     // Override to support rearranging the table view.
+     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+     
+     }
+     */
+    
+    /*
+     // Override to support conditional rearranging of the table view.
+     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the item to be re-orderable.
+     return true
+     }
+     */
+    
+    
+    
 }
