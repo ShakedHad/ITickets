@@ -35,6 +35,12 @@ class MyTicketsTableViewController: UITableViewController {
         self.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        reloadData();
+    }
+    
     @objc func reloadData(){
         if(self.refreshControl?.isRefreshing == false){
                 self.refreshControl?.beginRefreshing()
@@ -61,7 +67,7 @@ class MyTicketsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ("iTickets");
+        return ("My Tickets");
     }
 
     
