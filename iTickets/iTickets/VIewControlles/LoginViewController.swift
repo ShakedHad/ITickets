@@ -17,8 +17,11 @@ class LoginViewController: UIViewController {
     var sender:authenticationDelegate?;
     @IBOutlet weak var EmailAddressTextView: UITextField!
     @IBOutlet weak var PasswordTextView: UITextField!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loader.isHidden = true
         PasswordTextView.isSecureTextEntry = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelLogin(sender:)));
     }
@@ -30,6 +33,9 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func Login(_ sender: Any) {
+        loader.isHidden = false
+        loader.startAnimating()
+        
         UsersStore.instance.login(emailAddress: EmailAddressTextView!.text!, password: PasswordTextView!.text!) {
             print("logged in");
 
