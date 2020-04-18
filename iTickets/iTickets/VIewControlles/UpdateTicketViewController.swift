@@ -37,21 +37,33 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func updateTicket(_ sender: Any) {
-        performTicketStoreAction(){
-        if let image = selectedImage{
-            let formatter = DateFormatter();
-            formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-            let ticketDate = datePicker.date
-            
-        TicketsStore.instance.saveImage(image: image) { (url) in
-                print("saved image url \(url)");
+        UsersStore.instance.getLoggedUser { (user) in
+            self.performTicketStoreAction(){
+                let ticketDate = self.datePicker.date
+                var imgUrl = self.ticket?.image;
                 
-            let seller = User(name: "Shir", phone: "0546774799", id: "315005660", emailAddress: "")
-                
-            let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: seller)
-            
-                TicketsStore.instance.update(element: updatedTicket)
+                // if the user updated the image
+                if let image = self.selectedImage{
+                    let formatter = DateFormatter();
+                    formatter.dateFormat = "dd/MM/yyyy, HH:mm";
+                    
+                    TicketsStore.instance.saveImage(image: image) { (url) in
+                        print("saved image url \(url)");
+                        imgUrl = url
+                        
+                        let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user)
+                        
+                        TicketsStore.instance.update(element: updatedTicket)
+                    }
                 }
+                // the user didn't update the image
+                else {
+                    let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user)
+                    
+                    TicketsStore.instance.update(element: updatedTicket)
+                }
+                
+                
             }
         }
     }
@@ -78,31 +90,31 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
     @IBAction func updateImage(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerController.SourceType.photoLibrary) {
-         let imagePicker = UIImagePickerController()
+            let imagePicker = UIImagePickerController()
             imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-         imagePicker.sourceType =
-            UIImagePickerController.SourceType.photoLibrary;
-         imagePicker.allowsEditing = true
-         self.present(imagePicker, animated: true, completion: nil)
+            imagePicker.sourceType =
+                UIImagePickerController.SourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-         selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         
         self.image.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

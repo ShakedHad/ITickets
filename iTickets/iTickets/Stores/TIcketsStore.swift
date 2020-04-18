@@ -54,6 +54,9 @@ class TicketsStore : AsyncStoreProtocol {
     
     func update(element: Ticket){
         remoteDBAccessor.update(element: element)
+        
+        // deleting the pre updated ticket on localdb
+        localDBAccessor.delete(element: element)
         ModelEvents.TicketUpdatedDataEvent.post()
     }
     

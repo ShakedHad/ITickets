@@ -115,6 +115,23 @@ class SqliteAccesoor: SyncStoreProtocol {
         }
     }
     
+    func update(element: Ticket){
+        do {
+            let ticketToUpdate = ticketsTable.filter(ticketId == element.id)
+
+            try db?.run(ticketToUpdate.update(
+            ticketId <- element.id,
+            artist <- element.artist,
+            price <- element.price,
+            time <- element.time,
+            location <- element.location,
+            image <- element.image,
+            sellerID <- element.seller.id));
+            } catch let err {
+                print("Error while updating ticket: \(err)")
+            }
+    }
+    
     func delete(element: Ticket){
         do {
             let ticketToDelete = ticketsTable.filter(ticketId == element.id)
