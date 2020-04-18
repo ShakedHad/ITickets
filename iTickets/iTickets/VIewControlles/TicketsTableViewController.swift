@@ -24,7 +24,16 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         ModelEvents.TicketAddedDataEvent.observe{
             self.reloadData()
         }
+        
+        ModelEvents.TicketUpdatedDataEvent.observe{
+            self.reloadData()
+        }
+        
+        ModelEvents.TicketDeletedDataEvent.observe{
+            self.reloadData()
+        }
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
