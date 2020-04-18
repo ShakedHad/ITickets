@@ -90,20 +90,23 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
     
-    func delete(element: Ticket){
+    func delete(element: Ticket, callback: @escaping ()->Void){
         db.collection("tickets").document(element.id).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
             } else {
                 print("Document successfully removed!")
+                callback()
             }
         }
     }
     
     var serverLastUpdateDate : Date = Date(timeIntervalSince1970: 0)
     
-    func update(element: Ticket){
-        self.delete(element: element)
+    func update(element: Ticket, callback: @escaping ()->Void){
+        self.delete(element: element) {
+            callback()
+        }
         self.add(element: element)
     }
 
@@ -129,8 +132,9 @@ class FirebaseAccessor: AsyncStoreProtocol {
             } else {
                 if(querySnapshot!.documents.count > 0){
                     let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
-                    let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as! Timestamp).dateValue()
-                    callback(lastUpdatedTicketTime);
+                    
+                    let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as? Timestamp)?.dateValue()
+                    callback(lastUpdatedTicketTime ?? Date(timeIntervalSince1970: 0));
                 }
             }
         };

@@ -18,7 +18,7 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-        var selectedImage: UIImage?
+    var selectedImage: UIImage?
     override func viewDidLoad() {
         activityIndicator.isHidden = true
         
@@ -33,21 +33,21 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
         if let image = selectedImage{
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
-
+            
             addTicketButton.isEnabled = false
             addImageButton.isEnabled = false
-
+            
             let formatter = DateFormatter();
             formatter.dateFormat = "dd/MM/yyyy, HH:mm";
             let ticketDate = datePicker.date
             
-        TicketsStore.instance.saveImage(image: image) { (url) in
+            TicketsStore.instance.saveImage(image: image) { (url) in
                 print("saved image url \(url)");
                 
-            UsersStore.instance.getLoggedUser { (currentUser) in
-                let ticket = Ticket(id: "", artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: currentUser)
+                UsersStore.instance.getLoggedUser { (currentUser) in
+                    let ticket = Ticket(id: "", artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: currentUser)
                     TicketsStore.instance.add(element: ticket)
-                            self.navigationController?.popViewController(animated: true);
+                    self.navigationController?.popViewController(animated: true);
                 }
             }
         }
@@ -56,17 +56,17 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
     @IBAction func addImage(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerController.SourceType.photoLibrary) {
-         let imagePicker = UIImagePickerController()
+            let imagePicker = UIImagePickerController()
             imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
-         imagePicker.sourceType =
-            UIImagePickerController.SourceType.photoLibrary;
-         imagePicker.allowsEditing = true
-         self.present(imagePicker, animated: true, completion: nil)
+            imagePicker.sourceType =
+                UIImagePickerController.SourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-         selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         
         self.image.image = selectedImage
         dismiss(animated: true, completion: nil)
@@ -82,13 +82,13 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
     
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
