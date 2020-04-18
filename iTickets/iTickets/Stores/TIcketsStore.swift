@@ -5,13 +5,13 @@
 //  Created by admin on 02/03/2020.
 //  Copyright © 2020 ss. All rights reserved.
 //
-    
+
 import Foundation
 import UIKit
 import Firebase
 
 class TicketsStore : AsyncStoreProtocol {
-        
+    
     static let instance:TicketsStore = TicketsStore();
     var remoteDBAccessor:FirebaseAccessor = FirebaseAccessor();
     var localDBAccessor:SqliteAccesoor = SqliteAccesoor();
@@ -25,11 +25,11 @@ class TicketsStore : AsyncStoreProtocol {
             for ticket in newTickets {
                 self.localDBAccessor.add(element: ticket);
             }
-
+            
             self.remoteDBAccessor.getServerLastUpdatedDate() { serverLastUpdatedDate in
                 self.localDBAccessor.setLastUpdatedDate(tableName: "tickets", lastUpdatedDate: serverLastUpdatedDate);
                 let allTickets = self.localDBAccessor.getAll();
-
+                
                 callback(allTickets)
             };
         };
@@ -57,10 +57,9 @@ class TicketsStore : AsyncStoreProtocol {
         remoteDBAccessor.delete(element: element) {
             callback()
         }
+        
         localDBAccessor.delete(element: element)
         ModelEvents.TicketDeletedDataEvent.post()
-        
-        
     }
     
     func add(element:Ticket) {
