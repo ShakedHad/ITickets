@@ -57,7 +57,7 @@ class MyTicketsTableViewController: UITableViewController {
         }
         
         UsersStore.instance.getLoggedUser {user in
-            self.userGreeting.text = "Hi! " + user.name
+            self.userGreeting.text = "Hi " + user.name + "!"
         
             let url = user.avatarUrl
         
