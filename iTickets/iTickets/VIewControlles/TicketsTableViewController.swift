@@ -24,6 +24,10 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         ModelEvents.TicketAddedDataEvent.observe{
             self.reloadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
         
         drawloginlogoutbuttons();
     }
