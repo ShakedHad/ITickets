@@ -222,17 +222,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="1" green="0.27843137254901962" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="bold"/>
                                 </state>
                                 <connections>
                                     <action selector="Login:" destination="tVo-Lz-3SF" eventType="touchUpInside" id="WhB-RE-efx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4MA-GC-sLx">
-                                <rect key="frame" x="234" y="523" width="127" height="30"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="CeR-fc-nwk">
+                                <rect key="frame" x="250" y="591" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4MA-GC-sLx">
+                                <rect key="frame" x="144" y="619" width="127" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Don't have a user?">
-                                    <color key="titleColor" red="1" green="0.2784313725" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
                                 </state>
                                 <connections>
@@ -247,6 +251,7 @@
                     <connections>
                         <outlet property="EmailAddressTextView" destination="b5M-1c-Dgw" id="zTy-PT-WFQ"/>
                         <outlet property="PasswordTextView" destination="cAe-ib-Qhb" id="g1N-ue-PN9"/>
+                        <outlet property="loader" destination="CeR-fc-nwk" id="yRX-ox-neO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQZ-VK-OSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -309,6 +314,10 @@
                                     <action selector="Register:" destination="8xf-wK-CRJ" eventType="touchUpInside" id="XSh-Oh-LtB"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="7ny-IO-pnI">
+                                <rect key="frame" x="259" y="702" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Np4-f4-gGW"/>
@@ -317,6 +326,7 @@
                     <connections>
                         <outlet property="emailAddressTextView" destination="gCr-Ve-UZf" id="f52-lr-0tp"/>
                         <outlet property="fullNameTextView" destination="eGy-hj-Lge" id="RDx-A4-916"/>
+                        <outlet property="loader" destination="7ny-IO-pnI" id="dep-nc-HZx"/>
                         <outlet property="passwordTextView" destination="Wx7-J4-HoD" id="74r-aw-OcJ"/>
                         <outlet property="phoneTextView" destination="8DY-uN-7BK" id="NLe-WF-byg"/>
                         <segue destination="TjK-HM-9ni" kind="unwind" identifier="registeredSegue" unwindAction="unwindFromRegisterWithSegue:" id="vD0-OY-wq1"/>
