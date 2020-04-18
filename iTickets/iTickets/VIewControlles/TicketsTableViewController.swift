@@ -35,19 +35,19 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         }
         
         ModelEvents.UserLoggedInEvent.observe {
-            self.drawLogin()
+            self.drawLogout()
         }
         
         ModelEvents.UserLoggedOutEvent.observe {
-            self.drawLogout()
+            self.drawLogin()
         }
         
         myTicketsViewController = (self.tabBarController?.viewControllers![1])!;
         
         if UsersStore.instance.doesUserLogged() {
-            drawLogin()
-        } else {
             drawLogout()
+        } else {
+            drawLogin()
         }
     }
     
@@ -80,7 +80,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         };
     }
     
-    func drawLogin(){
+    func drawLogout(){
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.logout(sender:)));
         if (self.tabBarController?.viewControllers?.count == 1) {
             var tabsViewControllers = self.tabBarController?.viewControllers;
@@ -89,7 +89,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         }
     }
     
-    func drawLogout(){
+    func drawLogin(){
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.login(sender:)));
         if (self.tabBarController?.viewControllers?.count == 2) {
             var tabsViewControllers = self.tabBarController?.viewControllers;
