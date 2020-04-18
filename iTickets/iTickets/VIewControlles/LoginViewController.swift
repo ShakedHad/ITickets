@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
                 }
             } else{
                 self.loginFailedMessage.isHidden = false
+                self.loader.isHidden = true
             }
         }
     }
