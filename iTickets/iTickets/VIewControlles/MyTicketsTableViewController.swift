@@ -32,6 +32,14 @@ class MyTicketsTableViewController: UITableViewController {
             self.reloadData()
         }
         
+        ModelEvents.UserLoggedInEvent.observe {
+            self.reloadData()
+        }
+        
+        ModelEvents.UserLoggedOutEvent.observe {
+            self.reloadData()
+        }
+        
         self.reloadData()
     }
     
