@@ -42,13 +42,13 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
             self.drawLogout()
         }
         
+        myTicketsViewController = (self.tabBarController?.viewControllers![1])!;
+        
         if UsersStore.instance.doesUserLogged() {
             drawLogin()
         } else {
             drawLogout()
         }
-        
-        myTicketsViewController = (self.tabBarController?.viewControllers![1])!;
     }
     
     @objc func login(sender: UIBarButtonItem) {
