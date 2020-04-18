@@ -9,7 +9,7 @@
 import UIKit
 
 class UpdateTicketViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-
+    
     @IBOutlet weak var artistTextView: UITextField!
     @IBOutlet weak var priceTextView: UITextField!
     @IBOutlet weak var locationTextView: UITextField!
@@ -37,56 +37,55 @@ class UpdateTicketViewController: UIViewController, UIImagePickerControllerDeleg
     }
     
     @IBAction func updateTicket(_ sender: Any) {
-        UsersStore.instance.getLoggedUser { (user) in
-            self.performTicketStoreAction(){
-                let ticketDate = self.datePicker.date
-                var imgUrl = self.ticket?.image;
-                
-                // if the user updated the image
-                if let image = self.selectedImage{
-                    let formatter = DateFormatter();
-                    formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-                    
-                    TicketsStore.instance.saveImage(image: image) { (url) in
-                        print("saved image url \(url)");
-                        imgUrl = url
-                        
-                        let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user)
-                        
-                        TicketsStore.instance.update(element: updatedTicket)
-                    }
-                }
-                // the user didn't update the image
-                else {
-                    let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user)
-                    
-                    TicketsStore.instance.update(element: updatedTicket)
-                }
-                
-                
-            }
-        }
-    }
-    
-    @IBAction func deleteTicket(_ sender: Any) {
-        performTicketStoreAction(){
-            TicketsStore.instance.delete(element: self.ticket!)
-        }
-    }
-    
-    func performTicketStoreAction(callback: ()-> Void){
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         updateButton.isEnabled = false
         deleteButton.isEnabled = false
         updateImageButton.isEnabled = false
         
-        callback()
-        
-        self.navigationController?.popViewController(animated: true);
-        
+        UsersStore.instance.getLoggedUser { (user) in
+            let ticketDate = self.datePicker.date
+            var imgUrl = self.ticket?.image;
+            
+            // if the user updated the image
+            if let image = self.selectedImage{
+                let formatter = DateFormatter();
+                formatter.dateFormat = "dd/MM/yyyy, HH:mm";
+                
+                TicketsStore.instance.saveImage(image: image) { (url) in
+                    print("saved image url \(url)");
+                    imgUrl = url
+                    
+                    let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user, isDeleted: self.ticket!.isDeleted)
+                    
+                    TicketsStore.instance.update(element: updatedTicket) { () in
+                        self.navigationController?.popViewController(animated: true);
+                    }
+                }
+            }
+                // the user didn't update the image
+            else {
+                let updatedTicket = Ticket(id: self.ticket!.id, artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: imgUrl!, seller: user, isDeleted: self.ticket!.isDeleted)
+                
+                TicketsStore.instance.update(element: updatedTicket) { () in
+                    self.navigationController?.popViewController(animated: true);
+                }
+            }
+        }
     }
     
+    @IBAction func deleteTicket(_ sender: Any) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        updateButton.isEnabled = false
+        deleteButton.isEnabled = false
+        updateImageButton.isEnabled = false
+        
+        TicketsStore.instance.delete(element: self.ticket!) {() in
+            self.navigationController?.popViewController(animated: true);
+        }
+    }
+
     @IBAction func updateImage(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerController.SourceType.photoLibrary) {

@@ -18,6 +18,7 @@ class MyTicketsTableViewController: UITableViewController {
         super.viewDidLoad();
         
         self.refreshControl = UIRefreshControl();
+        self.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         
         ModelEvents.TicketUpdatedDataEvent.observe{
             self.reloadData()
@@ -27,7 +28,25 @@ class MyTicketsTableViewController: UITableViewController {
             self.reloadData()
         }
         
+        ModelEvents.TicketAddedDataEvent.observe{
+            self.reloadData()
+        }
+        
+        ModelEvents.UserLoggedInEvent.observe {
+            self.reloadData()
+        }
+        
+        ModelEvents.UserLoggedOutEvent.observe {
+            self.reloadData()
+        }
+        
         self.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        
+        reloadData();
     }
     
     @objc func reloadData(){
@@ -56,7 +75,7 @@ class MyTicketsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ("iTickets");
+        return ("My Tickets");
     }
 
     

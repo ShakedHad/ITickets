@@ -90,21 +90,27 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
     
-    func delete(element: Ticket){
-        db.collection("tickets").document(element.id).delete() { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
-            }
-        }
+    func delete(element: Ticket, callback: @escaping ()->Void){
+        element.isDeleted = true;
+        self.update(element: element, callback: callback)
     }
     
     var serverLastUpdateDate : Date = Date(timeIntervalSince1970: 0)
     
-    func update(element: Ticket){
-        self.delete(element: element)
-        self.add(element: element)
+    func update(element: Ticket, callback: @escaping ()->Void){
+        
+        var ticketJson = try! FirestoreEncoder().encode(element);
+        
+        ticketJson["updateTime"] = FieldValue.serverTimestamp();
+        
+        db.collection("tickets").document(element.id).updateData(ticketJson) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated!")
+                callback()
+            }
+        }
     }
 
     func add(element: Ticket) {
@@ -127,17 +133,27 @@ class FirebaseAccessor: AsyncStoreProtocol {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
-                let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as! Timestamp).dateValue()
-                callback(lastUpdatedTicketTime);
+                if(querySnapshot!.documents.count > 0){
+                    let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
+                    
+                    let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as? Timestamp)?.dateValue()
+                    callback(lastUpdatedTicketTime ?? Date(timeIntervalSince1970: 0));
+                }
             }
         };
     }
     
-    func login(emailAddress:String, password:String, callback: @escaping ()->Void) {
+    func login(emailAddress:String, password:String, callback: @escaping (Bool)->Void) {
         Auth.auth().signIn(withEmail: emailAddress, password: password) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
-            callback();
+            if let error = error {
+                print("Error logging in: \(error)")
+                callback(false);
+            } else {
+                print("successfully logged in")
+                callback(true);
+            }
+            
         }
     }
     

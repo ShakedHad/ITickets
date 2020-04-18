@@ -15,7 +15,7 @@ class UsersStore {
     private init() {
     }
     
-    func login(emailAddress:String, password:String, callback: @escaping ()->Void) {
+    func login(emailAddress:String, password:String, callback: @escaping (Bool)->Void) {
         firebaseAccessor.login(emailAddress: emailAddress, password: password, callback: callback);
     }
     

@@ -17,8 +17,13 @@ class LoginViewController: UIViewController {
     var sender:authenticationDelegate?;
     @IBOutlet weak var EmailAddressTextView: UITextField!
     @IBOutlet weak var PasswordTextView: UITextField!
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var loginFailedMessage: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginFailedMessage.isHidden = true
+        loader.isHidden = true
         PasswordTextView.isSecureTextEntry = true
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.cancelLogin(sender:)));
     }
@@ -28,14 +33,20 @@ class LoginViewController: UIViewController {
         viewController.sender = sender;
         (sender as! UIViewController).show(viewController, sender: sender as! UIViewController);
     }
-
+    
     @IBAction func Login(_ sender: Any) {
-        UsersStore.instance.login(emailAddress: EmailAddressTextView!.text!, password: PasswordTextView!.text!) {
-            print("logged in");
-
-            self.navigationController?.popViewController(animated: true);
-            if let sender = self.sender{
-                sender.onLoginSuccess()
+        loader.isHidden = false
+        loginFailedMessage.isHidden = true
+        loader.startAnimating()
+        
+        UsersStore.instance.login(emailAddress: EmailAddressTextView!.text!, password: PasswordTextView!.text!) { isSuccess in
+            if (isSuccess) {
+                self.navigationController?.popViewController(animated: true);
+                if let sender = self.sender{
+                    sender.onLoginSuccess()
+                }
+            } else{
+                self.loginFailedMessage.isHidden = false
             }
         }
     }
@@ -56,15 +67,14 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
