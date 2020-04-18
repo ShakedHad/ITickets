@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mph-7Y-JZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mph-7Y-JZD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -487,7 +487,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="250$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SL6-Sd-zKC">
-                                <rect key="frame" x="262" y="733" width="132" height="72"/>
+                                <rect key="frame" x="212" y="733" width="182" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
                                 <nil key="textColor"/>
@@ -637,8 +637,8 @@
     </scenes>
     <resources>
         <image name="background" width="1125" height="750"/>
-        <image name="person.fill" catalog="system" width="64" height="60"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="rectangle.stack.fill" catalog="system" width="64" height="60"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="rectangle.stack.fill" catalog="system" width="128" height="122"/>
     </resources>
 </document>
