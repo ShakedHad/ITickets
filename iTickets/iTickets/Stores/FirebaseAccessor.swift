@@ -46,9 +46,9 @@ class FirebaseAccessor: AsyncStoreProtocol {
                     data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
 
                     data["id"] = QueryDocumentSnapshot.documentID;
-
+                    
                     let decoder = FirestoreDecoder();
-                    let ticket = try! decoder.decode(Ticket.self, from: data)
+                    let ticket = try! decoder.decode(Ticket.self, from: data);
                     return ticket;
                 }
                 callback(tickets);
@@ -56,8 +56,30 @@ class FirebaseAccessor: AsyncStoreProtocol {
         }
     }
     
+    func getUserTickets(seller:User, since:Date, callback: @escaping (([Ticket])->Void)) {
+        db.collection("tickets").whereField("seller.id", isEqualTo: seller.id).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                let tickets = querySnapshot!.documents.map { (QueryDocumentSnapshot) -> Ticket in
+                    var data = QueryDocumentSnapshot.data()
+                    data["time"] = (data["time"] as! Timestamp).dateValue();
+                    data["updateTime"] = (data["updateTime"] as? Timestamp)?.dateValue() ?? Date(timeIntervalSince1970: 0);
+    
+                    data["id"] = QueryDocumentSnapshot.documentID;
+
+                    let decoder = FirestoreDecoder();
+                    let ticket = try! decoder.decode(Ticket.self, from: data)
+                    return ticket;
+                }
+                
+                callback(tickets);
+            }
+        }
+    }
+    
     func get(userId:String, callback: @escaping (User)->Void) {
-        db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
+        self.db.collection("users").whereField("id", isEqualTo: userId).getDocuments { (querySnapshot, error) in
             if let document = querySnapshot?.documents[0], querySnapshot!.documents[0].exists {
                 let decoder = FirestoreDecoder();
                 let user = try! decoder.decode(User.self, from: document.data())
@@ -66,6 +88,23 @@ class FirebaseAccessor: AsyncStoreProtocol {
                 print("Document does not exist")
             }
         }
+    }
+    
+    func delete(element: Ticket){
+        db.collection("tickets").document(element.id).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
+    var serverLastUpdateDate : Date = Date(timeIntervalSince1970: 0)
+    
+    func update(element: Ticket){
+        self.delete(element: element)
+        self.add(element: element)
     }
 
     func add(element: Ticket) {

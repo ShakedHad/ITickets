@@ -24,7 +24,8 @@ class Ticket : Encodable, Decodable {
     var updateTime:Date = Date();
 
     
-    init(artist:String, price:Int, time:Date, location:String, image:String, seller:User) {
+    init(id: String, artist:String, price:Int, time:Date, location:String, image:String, seller:User) {
+        self.id = id;
         self.artist = artist;
         self.price = price;
         self.time = time;
@@ -37,6 +38,8 @@ class Ticket : Encodable, Decodable {
 class ModelEvents {
     static let TicketAddedDataEvent = EventNotificationBase(eventName: "com.shir.TicketAddedDataEvent")
     static let LoggingStateChangedEvent = EventNotificationBase(eventName:"com.shir.LoggingStateChangeEvent")
+        static let TicketUpdatedDataEvent = EventNotificationBase(eventName:"com.shir.TicketUpdatedDataEvent")
+        static let TicketDeletedDataEvent = EventNotificationBase(eventName:"com.shir.TicketDeletedDataEvent")
     
     private init(){}
 }

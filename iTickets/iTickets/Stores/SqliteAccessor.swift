@@ -80,7 +80,7 @@ class SqliteAccesoor: SyncStoreProtocol {
         do {
             let tickets = (try (db?.prepare(ticketsTable.join(usersTable, on: userId == sellerID)))!).map { (ticketRow) -> Ticket in
 
-                return Ticket(artist: ticketRow[artist],
+                return Ticket(id:ticketRow[ticketId], artist: ticketRow[artist],
                       price: ticketRow[price],
                       time: ticketRow[time],
                   location: ticketRow[location],
@@ -113,6 +113,32 @@ class SqliteAccesoor: SyncStoreProtocol {
         } catch let err {
             print("Error while adding ticket: \(err)")
         }
+    }
+    
+    func update(element: Ticket){
+        do {
+            let ticketToUpdate = ticketsTable.filter(ticketId == element.id)
+
+            try db?.run(ticketToUpdate.update(
+            ticketId <- element.id,
+            artist <- element.artist,
+            price <- element.price,
+            time <- element.time,
+            location <- element.location,
+            image <- element.image,
+            sellerID <- element.seller.id));
+            } catch let err {
+                print("Error while updating ticket: \(err)")
+            }
+    }
+    
+    func delete(element: Ticket){
+        do {
+            let ticketToDelete = ticketsTable.filter(ticketId == element.id)
+            try db?.run(ticketToDelete.delete())
+            } catch let err {
+                print("Error while deleting ticket: \(err)")
+            }
     }
     
     func getLastUpdatedDate(tableName:String)->Date {

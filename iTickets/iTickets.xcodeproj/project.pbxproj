@@ -61,6 +61,17 @@
 		848CF54E240D74B80082EEA2 /* TIcketsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF54D240D74B80082EEA2 /* TIcketsStore.swift */; };
 		848CF550240D79140082EEA2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF54F240D79140082EEA2 /* User.swift */; };
 		848CF554240D93A80082EEA2 /* TicketInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CF553240D93A80082EEA2 /* TicketInfoViewController.swift */; };
+		F529544624182FD30045DCF7 /* MyTicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529544524182FD30045DCF7 /* MyTicketsViewController.swift */; };
+		F5295448241831480045DCF7 /* MyTicketsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5295447241831480045DCF7 /* MyTicketsTableViewController.swift */; };
+		F529544C241832350045DCF7 /* MyTicketsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529544B241832350045DCF7 /* MyTicketsTableViewCell.swift */; };
+		F529544E241947450045DCF7 /* UpdateTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F529544D241947450045DCF7 /* UpdateTicketViewController.swift */; };
+		F5D4077E2416C5640080FCAA /* 82E81C61-5499-3D77-B69B-E1C643105CB4.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D407772416C5630080FCAA /* 82E81C61-5499-3D77-B69B-E1C643105CB4.bcsymbolmap */; };
+		F5D4077F2416C5640080FCAA /* 96FA49DC-7823-359A-B429-FD70173A921B.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D407782416C5630080FCAA /* 96FA49DC-7823-359A-B429-FD70173A921B.bcsymbolmap */; };
+		F5D407802416C5640080FCAA /* 9E390A2C-5C07-3451-815C-96472D045529.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D407792416C5630080FCAA /* 9E390A2C-5C07-3451-815C-96472D045529.bcsymbolmap */; };
+		F5D407812416C5640080FCAA /* A9A888DA-68D2-3E95-97C0-D0B2805011C0.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077A2416C5630080FCAA /* A9A888DA-68D2-3E95-97C0-D0B2805011C0.bcsymbolmap */; };
+		F5D407822416C5640080FCAA /* FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077B2416C5630080FCAA /* FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap */; };
+		F5D407832416C5640080FCAA /* 45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077C2416C5630080FCAA /* 45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap */; };
+		F5D407842416C5640080FCAA /* 7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap in Resources */ = {isa = PBXBuildFile; fileRef = F5D4077D2416C5630080FCAA /* 7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap */; };
 		F5D407862416CC150080FCAA /* AddTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D407852416CC150080FCAA /* AddTicketViewController.swift */; };
 		F5D407892416D4D30080FCAA /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D407882416D4D30080FCAA /* FirebaseStorageService.swift */; };
 /* End PBXBuildFile section */
@@ -168,6 +179,17 @@
 		84C35C9124103E25002D7D27 /* GoogleDataTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleDataTransport.framework; path = Carthage/Build/iOS/GoogleDataTransport.framework; sourceTree = "<group>"; };
 		84C35C9224103E25002D7D27 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Carthage/Build/iOS/GoogleUtilities.framework; sourceTree = "<group>"; };
 		84C35CFA241051CD002D7D27 /* CodableFirebase */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CodableFirebase; path = Carthage/Checkouts/CodableFirebase; sourceTree = "<group>"; };
+		F529544524182FD30045DCF7 /* MyTicketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketsViewController.swift; sourceTree = "<group>"; };
+		F5295447241831480045DCF7 /* MyTicketsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketsTableViewController.swift; sourceTree = "<group>"; };
+		F529544B241832350045DCF7 /* MyTicketsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTicketsTableViewCell.swift; sourceTree = "<group>"; };
+		F529544D241947450045DCF7 /* UpdateTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTicketViewController.swift; sourceTree = "<group>"; };
+		F5D407772416C5630080FCAA /* 82E81C61-5499-3D77-B69B-E1C643105CB4.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "82E81C61-5499-3D77-B69B-E1C643105CB4.bcsymbolmap"; path = "Carthage/Build/iOS/82E81C61-5499-3D77-B69B-E1C643105CB4.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D407782416C5630080FCAA /* 96FA49DC-7823-359A-B429-FD70173A921B.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "96FA49DC-7823-359A-B429-FD70173A921B.bcsymbolmap"; path = "Carthage/Build/iOS/96FA49DC-7823-359A-B429-FD70173A921B.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D407792416C5630080FCAA /* 9E390A2C-5C07-3451-815C-96472D045529.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "9E390A2C-5C07-3451-815C-96472D045529.bcsymbolmap"; path = "Carthage/Build/iOS/9E390A2C-5C07-3451-815C-96472D045529.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D4077A2416C5630080FCAA /* A9A888DA-68D2-3E95-97C0-D0B2805011C0.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "A9A888DA-68D2-3E95-97C0-D0B2805011C0.bcsymbolmap"; path = "Carthage/Build/iOS/A9A888DA-68D2-3E95-97C0-D0B2805011C0.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D4077B2416C5630080FCAA /* FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap"; path = "Carthage/Build/iOS/FBFB0A5F-D5F4-3A0E-8DBE-680B548F39C1.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D4077C2416C5630080FCAA /* 45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap"; path = "Carthage/Build/iOS/45588082-6A62-32BA-A0CD-2C51CA83A46C.bcsymbolmap"; sourceTree = "<group>"; };
+		F5D4077D2416C5630080FCAA /* 7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap"; path = "Carthage/Build/iOS/7295B68B-DD81-334C-8A30-82D2491C5733.bcsymbolmap"; sourceTree = "<group>"; };
 		F5D407852416CC150080FCAA /* AddTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTicketViewController.swift; sourceTree = "<group>"; };
 		F5D407882416D4D30080FCAA /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -289,6 +311,10 @@
 				848CF549240D732F0082EEA2 /* TicketsCellViewController.swift */,
 				848CF553240D93A80082EEA2 /* TicketInfoViewController.swift */,
 				F5D407852416CC150080FCAA /* AddTicketViewController.swift */,
+				F529544524182FD30045DCF7 /* MyTicketsViewController.swift */,
+				F5295447241831480045DCF7 /* MyTicketsTableViewController.swift */,
+				F529544B241832350045DCF7 /* MyTicketsTableViewCell.swift */,
+				F529544D241947450045DCF7 /* UpdateTicketViewController.swift */,
 			);
 			path = VIewControlles;
 			sourceTree = "<group>";
@@ -477,12 +503,16 @@
 				8442530B240C3C9B00521137 /* RegisterViewController.swift in Sources */,
 				847639DF240C26AB0002D254 /* AppDelegate.swift in Sources */,
 				843FE975240C548800D3C23D /* TicketsTableViewController.swift in Sources */,
+				F5295448241831480045DCF7 /* MyTicketsTableViewController.swift in Sources */,
 				848CF550240D79140082EEA2 /* User.swift in Sources */,
 				848CF554240D93A80082EEA2 /* TicketInfoViewController.swift in Sources */,
+				F529544C241832350045DCF7 /* MyTicketsTableViewCell.swift in Sources */,
 				848CF54A240D732F0082EEA2 /* TicketsCellViewController.swift in Sources */,
+				F529544624182FD30045DCF7 /* MyTicketsViewController.swift in Sources */,
 				848CF54C240D74100082EEA2 /* Ticket.swift in Sources */,
 				84768216240EEE2D00A24B2B /* FirebaseAccessor.swift in Sources */,
 				F5D407892416D4D30080FCAA /* FirebaseStorageService.swift in Sources */,
+				F529544E241947450045DCF7 /* UpdateTicketViewController.swift in Sources */,
 				847639E1240C26AB0002D254 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
