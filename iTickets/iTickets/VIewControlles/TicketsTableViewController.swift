@@ -12,6 +12,7 @@ import Kingfisher
 class TicketsTableViewController: UITableViewController, authenticationDelegate {
     var data = [Ticket]();
     var selectedTicket:Ticket?;
+    var myTicketsViewController:UIViewController?;
 
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -32,6 +33,8 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         ModelEvents.TicketDeletedDataEvent.observe{
             self.reloadData()
         }
+        
+        myTicketsViewController = (self.tabBarController?.viewControllers![1])!;
     }
     
     
@@ -44,8 +47,19 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     func drawloginlogoutbuttons() {
         if UsersStore.instance.doesUserLogged() {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.logout(sender:)));
+            if (self.tabBarController?.viewControllers?.count == 1) {
+                var tabsViewControllers = self.tabBarController?.viewControllers;
+                tabsViewControllers?.append(self.myTicketsViewController!);
+                self.tabBarController?.viewControllers = tabsViewControllers;
+            }
+            
         } else {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Login", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.login(sender:)));
+            if (self.tabBarController?.viewControllers?.count == 2) {
+                var tabsViewControllers = self.tabBarController?.viewControllers;
+                tabsViewControllers?.removeLast();
+                self.tabBarController?.viewControllers = tabsViewControllers;
+            }
         }
     }
     
@@ -90,7 +104,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ("iTickets");
+        return ("Tickets Feed");
     }
 
     
