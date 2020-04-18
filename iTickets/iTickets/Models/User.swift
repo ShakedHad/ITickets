@@ -13,11 +13,13 @@ class User : Encodable, Decodable {
     var phone:String;
     var id:String;
     var emailAddress:String?;
-
-    init(name:String, phone:String, id:String, emailAddress:String) {
+    var avatarUrl:String
+    
+    init(name:String, phone:String, id:String, emailAddress:String, avatarUrl:String) {
         self.name = name;
         self.phone = phone;
         self.id = id;
         self.emailAddress = emailAddress;
+        self.avatarUrl = avatarUrl;
     }
 }

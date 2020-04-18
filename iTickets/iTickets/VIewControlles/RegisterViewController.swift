@@ -8,13 +8,18 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var fullNameTextView: UITextField!
     @IBOutlet weak var phoneTextView: UITextField!
     @IBOutlet weak var emailAddressTextView: UITextField!
     @IBOutlet weak var passwordTextView: UITextField!
+    
+@IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var addImageButton: UIButton!
+    
     @IBOutlet weak var loader: UIActivityIndicatorView!
+    var selectedImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +32,37 @@ class RegisterViewController: UIViewController {
         loader.isHidden = false
         loader.startAnimating()
         
-        UsersStore.instance.register(emailAddress: emailAddressTextView.text!, password: passwordTextView.text!, phone: phoneTextView.text!, fullName: fullNameTextView.text!) {
-                self.performSegue(withIdentifier: "registeredSegue", sender: self);
+        
+        if let image = self.selectedImage {
+            UsersStore.instance.saveAvatar(image: image) { (url) in
+                print("saved image url \(url)");
+                
+//                self.navigationController?.popViewController(animated: true);
+                UsersStore.instance.register(emailAddress: self.emailAddressTextView.text!, password: self.passwordTextView.text!, phone: self.phoneTextView.text!, fullName: self.fullNameTextView.text!, avatarUrl: url) {
+                        print("user added");
+                        self.performSegue(withIdentifier: "registeredSegue", sender: self);
+                }
+            }
         }
+    }
+    
+    @IBAction func addImage(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(
+            UIImagePickerController.SourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self as UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            imagePicker.sourceType =
+                UIImagePickerController.SourceType.photoLibrary;
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        
+        self.image.image = selectedImage
+        dismiss(animated: true, completion: nil)
     }
     
     /*

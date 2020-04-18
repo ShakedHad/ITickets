@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UsersStore {
     var firebaseAccessor:FirebaseAccessor = FirebaseAccessor();
@@ -23,8 +24,8 @@ class UsersStore {
         firebaseAccessor.logout();
     }
     
-    func register(emailAddress:String, password:String, phone:String, fullName:String, callback: @escaping ()->Void) {
-        firebaseAccessor.register(emailAddress: emailAddress, password: password,phone: phone, fullName: fullName, callback: callback);
+    func register(emailAddress:String, password:String, phone:String, fullName:String, avatarUrl:String, callback: @escaping ()->Void) {
+        firebaseAccessor.register(emailAddress: emailAddress, password: password,phone: phone, fullName: fullName, avatarUrl:avatarUrl, callback: callback);
     }
     
     func add(element:User) {
@@ -37,5 +38,9 @@ class UsersStore {
     
     func doesUserLogged() -> Bool {
         firebaseAccessor.doesUserLogged();
+    }
+    
+    func saveAvatar(image:UIImage, callback: @escaping (String)->Void){
+        FirebaseStorageService.saveImage(image: image, callback: callback)
     }
 }

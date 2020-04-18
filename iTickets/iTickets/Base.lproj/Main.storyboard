@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mph-7Y-JZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Mph-7Y-JZD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -299,38 +299,38 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iTickets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OH-sD-CgE">
-                                <rect key="frame" x="103" y="366" width="208" height="72"/>
+                                <rect key="frame" x="103" y="294" width="208" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCr-Ve-UZf">
-                                <rect key="frame" x="54" y="565" width="307" height="34"/>
+                                <rect key="frame" x="54" y="481" width="307" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eGy-hj-Lge">
-                                <rect key="frame" x="54" y="446" width="307" height="34"/>
+                                <rect key="frame" x="54" y="374" width="307" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DY-uN-7BK">
-                                <rect key="frame" x="54" y="488" width="307" height="34"/>
+                                <rect key="frame" x="54" y="416" width="307" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wx7-J4-HoD">
-                                <rect key="frame" x="54" y="607" width="307" height="34"/>
+                                <rect key="frame" x="54" y="523" width="307" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNr-8c-d1q">
-                                <rect key="frame" x="54" y="694" width="307" height="36"/>
+                                <rect key="frame" x="297" y="767" width="97" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Register">
@@ -341,19 +341,38 @@
                                     <action selector="Register:" destination="8xf-wK-CRJ" eventType="touchUpInside" id="XSh-Oh-LtB"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="7ny-IO-pnI">
-                                <rect key="frame" x="259" y="702" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="pVs-8c-vMb">
+                                <rect key="frame" x="388" y="775" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.2784313725" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyArtist" translatesAutoresizingMaskIntoConstraints="NO" id="Z6b-bR-1fI">
+                                <rect key="frame" x="54" y="587" width="155" height="146"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBZ-fe-VWX">
+                                <rect key="frame" x="255" y="638" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose Avatar">
+                                    <color key="titleColor" red="1" green="0.2784313725" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addImage:" destination="8xf-wK-CRJ" eventType="touchUpInside" id="NqC-xp-NUx"/>
+                                    <action selector="addTicket:" destination="uv3-L0-hY2" eventType="touchUpInside" id="xCI-5C-L9i"/>
+                                    <action selector="updateImage:" destination="pkx-na-vUA" eventType="touchUpInside" id="F6W-mx-hqh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Np4-f4-gGW"/>
                     </view>
                     <navigationItem key="navigationItem" id="Shl-6k-oKb"/>
                     <connections>
+                        <outlet property="addImageButton" destination="PBZ-fe-VWX" id="Weu-NR-x5Y"/>
                         <outlet property="emailAddressTextView" destination="gCr-Ve-UZf" id="f52-lr-0tp"/>
                         <outlet property="fullNameTextView" destination="eGy-hj-Lge" id="RDx-A4-916"/>
-                        <outlet property="loader" destination="7ny-IO-pnI" id="dep-nc-HZx"/>
+                        <outlet property="image" destination="Z6b-bR-1fI" id="9bt-SL-Bz4"/>
+                        <outlet property="loader" destination="pVs-8c-vMb" id="aBf-EC-EFd"/>
                         <outlet property="passwordTextView" destination="Wx7-J4-HoD" id="74r-aw-OcJ"/>
                         <outlet property="phoneTextView" destination="8DY-uN-7BK" id="NLe-WF-byg"/>
                         <segue destination="TjK-HM-9ni" kind="unwind" identifier="registeredSegue" unwindAction="unwindFromRegisterWithSegue:" id="vD0-OY-wq1"/>
@@ -362,7 +381,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0T-mw-nLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="TjK-HM-9ni" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2470" y="1246"/>
+            <point key="canvasLocation" x="2469.5652173913045" y="1245.5357142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Buk-CC-OGh">
@@ -676,8 +695,8 @@
         <image name="background" width="1125" height="750"/>
         <image name="dancing-banana.gif" width="365" height="360"/>
         <image name="emptyArtist" width="256" height="256"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="rectangle.stack.fill" catalog="system" width="128" height="122"/>
+        <image name="person.fill" catalog="system" width="64" height="60"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
+        <image name="rectangle.stack.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
