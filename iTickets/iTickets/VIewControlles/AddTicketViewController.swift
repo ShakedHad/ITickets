@@ -30,25 +30,25 @@ class AddTicketViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func addTicket(_ sender: Any) {
-        if let image = selectedImage{
-            activityIndicator.isHidden = false
-            activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        
+        addTicketButton.isEnabled = false
+        addImageButton.isEnabled = false
+        
+        UsersStore.instance.getLoggedUser { (currentUser) in
+            let ticket = Ticket(id: "", artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: self.datePicker.date, location: self.locationTextView.text!, image: "", seller: currentUser, isDeleted: false);
             
-            addTicketButton.isEnabled = false
-            addImageButton.isEnabled = false
-            
-            let formatter = DateFormatter();
-            formatter.dateFormat = "dd/MM/yyyy, HH:mm";
-            let ticketDate = datePicker.date
-            
-            TicketsStore.instance.saveImage(image: image) { (url) in
-                print("saved image url \(url)");
-                
-                UsersStore.instance.getLoggedUser { (currentUser) in
-                    let ticket = Ticket(id: "", artist: self.artistTextView.text!, price: Int(self.priceTextView.text!)!, time: ticketDate, location: self.locationTextView.text!, image: url, seller: currentUser, isDeleted: false);
+            if let image = self.selectedImage{
+                TicketsStore.instance.saveImage(image: image) { (url) in
+                    print("saved image url \(url)");
+                    ticket.image = url
                     TicketsStore.instance.add(element: ticket)
                     self.navigationController?.popViewController(animated: true);
                 }
+            } else {
+                TicketsStore.instance.add(element: ticket)
+                self.navigationController?.popViewController(animated: true);
             }
         }
     }
