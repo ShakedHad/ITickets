@@ -17,6 +17,7 @@ class TicketsTableViewController: UITableViewController, authenticationDelegate 
         super.viewDidLoad();
         
         self.refreshControl = UIRefreshControl();
+        self.refreshControl?.addTarget(self, action: #selector(reloadData), for: .valueChanged)
         
         self.reloadData()
         
