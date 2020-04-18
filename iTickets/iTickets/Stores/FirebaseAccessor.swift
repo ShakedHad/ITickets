@@ -91,23 +91,26 @@ class FirebaseAccessor: AsyncStoreProtocol {
     }
     
     func delete(element: Ticket, callback: @escaping ()->Void){
-        db.collection("tickets").document(element.id).delete() { err in
-            if let err = err {
-                print("Error removing document: \(err)")
-            } else {
-                print("Document successfully removed!")
-                callback()
-            }
-        }
+        element.isDeleted = true;
+        self.update(element: element, callback: callback)
     }
     
     var serverLastUpdateDate : Date = Date(timeIntervalSince1970: 0)
     
     func update(element: Ticket, callback: @escaping ()->Void){
-        self.delete(element: element) {
-            callback()
+        
+        var ticketJson = try! FirestoreEncoder().encode(element);
+        
+        ticketJson["updateTime"] = FieldValue.serverTimestamp();
+        
+        db.collection("tickets").document(element.id).updateData(ticketJson) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated!")
+                callback()
+            }
         }
-        self.add(element: element)
     }
 
     func add(element: Ticket) {

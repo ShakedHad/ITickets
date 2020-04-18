@@ -22,9 +22,10 @@ class Ticket : Encodable, Decodable {
     var image:String;
     var seller:User;
     var updateTime:Date = Date();
+    var isDeleted:Bool;
 
     
-    init(id: String, artist:String, price:Int, time:Date, location:String, image:String, seller:User) {
+    init(id: String, artist:String, price:Int, time:Date, location:String, image:String, seller:User, isDeleted:Bool) {
         self.id = id;
         self.artist = artist;
         self.price = price;
@@ -32,6 +33,7 @@ class Ticket : Encodable, Decodable {
         self.location = location;
         self.image = image;
         self.seller = seller;
+        self.isDeleted = isDeleted
     }
 }
 
