@@ -143,10 +143,17 @@ class FirebaseAccessor: AsyncStoreProtocol {
         };
     }
     
-    func login(emailAddress:String, password:String, callback: @escaping ()->Void) {
+    func login(emailAddress:String, password:String, callback: @escaping (Bool)->Void) {
         Auth.auth().signIn(withEmail: emailAddress, password: password) { [weak self] authResult, error in
             guard let strongSelf = self else { return }
-            callback();
+            if let error = error {
+                print("Error logging in: \(error)")
+                callback(false);
+            } else {
+                print("successfully logged in")
+                callback(true);
+            }
+            
         }
     }
     
