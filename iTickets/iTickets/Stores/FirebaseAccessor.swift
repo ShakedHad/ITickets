@@ -161,10 +161,10 @@ class FirebaseAccessor: AsyncStoreProtocol {
         try! Auth.auth().signOut();
     }
     
-    func register(emailAddress:String, password:String, phone:String, fullName:String, callback: @escaping ()->Void) {
+    func register(emailAddress:String, password:String, phone:String, fullName:String, avatarUrl:String, callback: @escaping ()->Void) {
         Auth.auth().createUser(withEmail: emailAddress, password: password) { authResult, error in
             if (error == nil) {
-                self.add(element: User(name: fullName, phone: phone, id: (authResult?.user.uid)!, emailAddress: emailAddress));
+                self.add(element: User(name: fullName, phone: phone, id: (authResult?.user.uid)!, emailAddress: emailAddress, avatarUrl: avatarUrl));
                 callback();
             }
         }

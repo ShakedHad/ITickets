@@ -87,7 +87,7 @@ class SqliteAccesoor: SyncStoreProtocol {
                       time: ticketRow[time],
                   location: ticketRow[location],
                   image: ticketRow[image],
-                  seller: User(name: ticketRow[name], phone: ticketRow[phone], id: ticketRow[userId], emailAddress: ""), isDeleted: ticketRow[isDeleted])
+                  seller: User(name: ticketRow[name], phone: ticketRow[phone], id: ticketRow[userId], emailAddress: "", avatarUrl: ""), isDeleted: ticketRow[isDeleted])
             }
             
             return tickets;
