@@ -19,7 +19,7 @@ class FirebaseStorageService {
         "gs://itickets-b6dd2.appspot.com")
         
     let data = image.jpegData(compressionQuality: 0.8)
-    let imageRef = storageRef.child("imageName")
+    let imageRef = storageRef.child(String(Timestamp.init().nanoseconds))
     let metadata = StorageMetadata()
     metadata.contentType = "image/jpeg"
     imageRef.putData(data!, metadata: metadata) { (metadata, error) in

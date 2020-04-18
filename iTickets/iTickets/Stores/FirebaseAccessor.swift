@@ -127,9 +127,11 @@ class FirebaseAccessor: AsyncStoreProtocol {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
-                let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as! Timestamp).dateValue()
-                callback(lastUpdatedTicketTime);
+                if(querySnapshot!.documents.count > 0){
+                    let lastUpdatedTicket:[String:Any] = querySnapshot!.documents[0].data();
+                    let lastUpdatedTicketTime = (lastUpdatedTicket["updateTime"] as! Timestamp).dateValue()
+                    callback(lastUpdatedTicketTime);
+                }
             }
         };
     }
